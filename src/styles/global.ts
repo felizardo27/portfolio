@@ -37,7 +37,9 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    overscroll-behavior: none;
     line-height: 1;
+    background-color: ${({theme}) => theme.background};
   }
   ol, ul {
     list-style: none;

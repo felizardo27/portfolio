@@ -10,10 +10,11 @@ interface RoutesPageProps {
 }
 
 export function Router() {
+
   const routesPages: RoutesPageProps[] = [
     {
       page: Home,
-      path: "/About",
+      path: "/home",
     },
   ];
 
@@ -21,28 +22,33 @@ export function Router() {
     <Container>
       <Routes>
         <Route
-          path="/home"
+          path="/"
           element={
             <>
               <Navbar />
               <Home />
             </>
           }
-          {...routesPages.map(({ page: Page, path }: RoutesPageProps) => {
-            <Route
-              path={`/${path}`}
-              key={path}
-              element={
-                <>
-                  <Navbar />
-                  <Page />
-                </>
-              }
-            />;
-          })}
         />
 
-        {/* <Route path="*" element={<NotFoundPage />} /> */}
+        {routesPages.map(({ page: Page, path }) => (
+          <Route
+            path={path}
+            key={path}
+            element={
+              <>
+                <Navbar />
+                <Page />
+              </>
+            }
+          />
+        ))}
+
+
+        <Route path="*" element={<>
+          <Navbar />
+          <></>
+        </>} />
       </Routes>
     </Container>
   );
