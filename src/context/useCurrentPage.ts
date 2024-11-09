@@ -8,8 +8,7 @@ interface NavbarState {
 
 const useCurrentPageStore = create<NavbarState>((set) => ({
   currentPage: "Portfolio",
-  setCurrentPage: (page: string) =>
-    set(() => ({ currentPage: page})),
+  setCurrentPage: (page: string) => set(() => ({ currentPage: page })),
 }));
 
 export function useCurrentPage() {
@@ -17,7 +16,8 @@ export function useCurrentPage() {
   const setCurrentPage = useCurrentPageStore((state) => state.setCurrentPage);
 
   useEffect(() => {
-    document.title = `Portfolio - ${currentPage}`
+    document.title =
+      currentPage === "Portfolio" ? currentPage : `Portfolio - ${currentPage}`;
   }, [currentPage]);
 
   return {

@@ -9,6 +9,7 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
   padding: 10px 100px;
+  z-index: 999999;
 `;
 
 export const IconLogo = styled.img`
@@ -34,6 +35,7 @@ interface MenuItemProps {
 export const MenuItem = styled.p<MenuItemProps>`
   color: var(--background);
   font-size: 1.2rem;
+  font-weight: 500;
   cursor: pointer;
   position: relative;
 

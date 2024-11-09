@@ -1,38 +1,42 @@
 import { Container, IconLogo, Menu, MenuItem, Navigation } from "./styles";
 import iconLogo from '../../assets/svgs/dark/profile.svg'
 import { useCurrentPage } from "../../context/useCurrentPage";
-
-interface PagesProps {
-  pageName: string;
-  pagePath: string;
-}
+import { routesPages } from "../../router/routesPath";
 
 export function Navbar() {
   const { currentPage, setCurrentPage } = useCurrentPage();
 
+  function goTo(url: string | undefined) {
+    if (url) {
+      window.open(url, '_blank');
+    }
+  }
 
-  const pages: PagesProps[] = [
-    { pageName: 'Home', pagePath: '/home' },
-    { pageName: 'About', pagePath: '/about' },
-    { pageName: 'Skills', pagePath: '/skills' },
-    { pageName: 'Education', pagePath: '/education' },
-    { pageName: 'Experience', pagePath: '/experience' },
-    { pageName: 'Projects', pagePath: '/projects' },
-    { pageName: 'Resume', pagePath: '/resume' },
-  ]
-
-  return <Container>
-    <IconLogo src={iconLogo} />
-
-
-    <Menu>
-      {pages.map(item => (
-        <Navigation to={item.pagePath} onClick={() => setCurrentPage(item.pageName)}>
-          <MenuItem isActive={item.pageName === currentPage ? true : false}
-            onClick={() => console.log(item.pagePath)}>{item.pageName}</MenuItem>
-        </Navigation>
-      ))}
-    </Menu>
-
-  </Container>;
+  return (
+    <Container>
+      <IconLogo src={iconLogo} />
+      <Menu>
+        {routesPages.map(item => (
+          item.pageName === 'Resume' ? (
+            <MenuItem
+              key={item.pageName}
+              onClick={() => goTo(item.links?.en)}
+            >
+              {item.pageName}
+            </MenuItem>
+          ) : (
+            <Navigation
+              key={item.pageName}
+              to={item.path}
+              onClick={() => setCurrentPage(item.pageName)}
+            >
+              <MenuItem isActive={item.pageName === currentPage}>
+                {item.pageName}
+              </MenuItem>
+            </Navigation>
+          )
+        ))}
+      </Menu>
+    </Container>
+  )
 }

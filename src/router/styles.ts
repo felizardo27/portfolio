@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: grid;
-  grid-template-rows: 4rem 1fr; /* navbar fixa em cima e main ocupa o restante */
+  grid-template-rows: 5.5rem 1fr; /* navbar fixa em cima e main ocupa o restante */
   grid-template-areas:
     "nav"
     "main";
