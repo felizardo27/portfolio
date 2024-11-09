@@ -15,6 +15,7 @@ export const NameTitle = styled.h2`
   font-size: 4rem;
   font-weight: 600;
   margin-bottom: 13px;
+  text-align: center;
 `;
 
 export const SkillsWrite = styled.p`

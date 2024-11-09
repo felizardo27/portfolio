@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: grid;
-  grid-template-rows: 5.5rem 1fr; /* navbar fixa em cima e main ocupa o restante */
+  grid-template-rows: 6.5rem 1fr;
   grid-template-areas:
     "nav"
     "main";
 
-  height: 100vh; /* Mantém o layout ocupando toda a altura da tela */
+  height: 100vh; 
   background-color: var(--background);
 
   /* ::-webkit-scrollbar {
