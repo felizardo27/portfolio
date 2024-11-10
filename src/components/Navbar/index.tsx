@@ -4,10 +4,12 @@ import iconMenuMobile from '../../assets/svgs/dark/menu.svg'
 import { useCurrentPage } from "../../context/useCurrentPage";
 import { routesPages } from "../../router/routesPath";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function Navbar() {
   const { currentPage, setCurrentPage } = useCurrentPage();
   const [menuOpen, setMenuOpen] = useState(false)
+  const navigation = useNavigate();
 
   function goTo(url: string | undefined) {
     if (url) {
@@ -48,7 +50,10 @@ export function Navbar() {
 
   return (
     <Container>
-      <IconLogo src={iconLogo} />
+      <IconLogo src={iconLogo} onClick={() => {
+        navigation('/home')
+        setCurrentPage('Home')
+      }} />
       <Menu>
         <RenderMenuItems />
       </Menu>

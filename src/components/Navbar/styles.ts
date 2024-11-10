@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 export const Container = styled.div`
   grid-area: nav;
   background-color: var(--backgroundContrast);
-  height: 70px;
+  height: 5rem;
   position: fixed;
   top: 0;
   left: 0;
@@ -12,11 +12,11 @@ export const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 100px;
+  padding: 0 100px;
   z-index: 1000;
 
   @media screen and (max-width: 830px) {
-    padding: 10px 50px;
+    padding: 0 50px;
   }
 `;
 
@@ -55,13 +55,13 @@ export const ContainerItems = styled.div<ContainerItemsProps>`
   width: 100%;
   position: absolute;
   background-color: var(--backgroundContrast);
-  top: 85px;
+  top: 65px;
   left: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding-bottom: 20px;
+  gap: 15px;
+  padding: 20px 0;
   overflow: hidden;
   transition:
     max-height 0.5s ease-in-out,
@@ -76,7 +76,9 @@ export const ContainerItems = styled.div<ContainerItemsProps>`
 `;
 
 export const Navigation = styled(Link)`
+  width: 100%;
   text-decoration: none;
+  text-align: center;
 `;
 
 interface MenuItemProps {
@@ -89,8 +91,11 @@ export const MenuItem = styled.p<MenuItemProps>`
   font-weight: 500;
   cursor: pointer;
   position: relative;
+  width: 100%;
+  text-align: center;
 
   @media screen and (max-width: 830px) {
+    font-size: 1.5rem;
     &:hover {
       opacity: 0.6;
     }

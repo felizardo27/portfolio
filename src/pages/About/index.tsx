@@ -4,7 +4,6 @@ export function About() {
   return (
     <Container>
       <Title>About</Title>
-
       <DescriptionContainer>
         <Description>
             Meu nome é João Pedro, tenho 24 anos e sou formado 
