@@ -17,7 +17,11 @@ export function useCurrentPage() {
 
   useEffect(() => {
     document.title =
-      currentPage === "Portfolio" ? currentPage : `Portfolio - ${currentPage}`;
+      currentPage === "Portfolio"
+        ? currentPage
+        : currentPage === "Home"
+          ? "Portifolio"
+          : `Portfolio - ${currentPage}`;
   }, [currentPage]);
 
   return {

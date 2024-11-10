@@ -2,12 +2,13 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   display: grid;
-  grid-template-rows: 6.5rem 1fr;
+  grid-template-rows: 6rem 1fr;
+  /* grid-template-rows: 5.6rem 1fr; */
   grid-template-areas:
     "nav"
     "main";
-
-  height: 100vh; 
+  height: 100vh;
+  overflow-y: hidden;
   background-color: var(--background);
 
   /* ::-webkit-scrollbar {
