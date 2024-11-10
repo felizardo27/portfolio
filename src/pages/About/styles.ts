@@ -7,21 +7,21 @@ export const Container = styled.div`
   color: var(--backgroundContrast);
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: column;
   @media screen and (max-width: 1260px) {
-    /* justify-content: space-around; */
-    padding: 20px 0;
-    gap: 20px;
+    justify-content: space-around;
   }
-`
+`;
 
 export const Title = styled.h3`
+  margin-top: 20px;
   font-size: 3rem;
   font-weight: 700;
 `;
 
 export const DescriptionContainer = styled.div`
+  margin-bottom: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +33,7 @@ export const DescriptionContainer = styled.div`
     gap: 30px;
     margin-bottom: 80px;
   }
-`
+`;
 
 export const Description = styled.p`
   text-align: start;
@@ -42,15 +42,15 @@ export const Description = styled.p`
   @media screen and (max-width: 1260px) {
     line-height: normal;
     font-size: 14px;
-    padding: 0 80px;
+    padding: 0 40px;
   }
-`
+`;
 
 export const ImageProfile = styled.img`
   width: 500px;
   border-radius: 8px;
 
   @media screen and (max-width: 1260px) {
-    width: 350px;
+    width: 300px;
   }
-`
+`;

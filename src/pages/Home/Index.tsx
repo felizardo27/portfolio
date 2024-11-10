@@ -7,14 +7,9 @@ import Typewriter from 'typewriter-effect';
 
 export function Home() {
 
-  function goToUrl(url: string) {
-    window.open(url, '_blak')
-  }
-
   return (
     <Container>
       <NameTitle>João Pedro Felizardo</NameTitle>
-      {/* <SkillsWrite>I'm a Developer</SkillsWrite> */}
       <SkillsWrite>
         <Typewriter
           onInit={(typewriter) => {
@@ -29,13 +24,13 @@ export function Home() {
         />
       </SkillsWrite>
       <ContainerIcons>
-        <IconContainer onClick={() => goToUrl('https://www.linkedin.com/in/felizardo27/')}>
+        <IconContainer href="https://www.linkedin.com/in/felizardo27/">
           <Icon src={linkedinIcon} />
         </IconContainer>
-        <IconContainer onClick={() => goToUrl("https://github.com/felizardo27")}>
+        <IconContainer href="https://github.com/felizardo27">
           <Icon src={githubIcon} />
         </IconContainer>
-        <IconContainer onClick={() => goToUrl("mailto:jp.felizardo27@gmail.com")}>
+        <IconContainer href="mailto:jp.felizardo27@gmail.com">
           <Icon src={emailIcon} />
         </IconContainer>
       </ContainerIcons>
