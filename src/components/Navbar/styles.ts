@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { ThemeType } from "../../context/useTheme";
-import { icons } from "../../styles/icons/icons";
 
 export const Container = styled.div`
   grid-area: nav;
@@ -31,15 +29,7 @@ export const IconLogo = styled.img`
   }
 `;
 
-export const IconTheme = styled.img<{ theme: ThemeType }>`
-  ${({ theme }) =>
-    theme === "dark"
-      ? css`
-          content: url(${icons.iconsDark.sunIcon});
-        `
-      : css`
-          content: url(${icons.iconsLight.moonIcon});
-        `}
+export const IconTheme = styled.img`
   height: 30px;
   width: 30px;
   cursor: pointer;

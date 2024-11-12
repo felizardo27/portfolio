@@ -60,14 +60,14 @@ export function Navbar() {
       }} />
       <Menu>
         <RenderMenuItems />
-        <IconTheme onClick={toggleTheme} theme={theme} />
+        <IconTheme onClick={toggleTheme} src={theme === 'dark' ? icons.sunIcon : icons.moonIcon} />
       </Menu>
       <MenuMobile>
         <IconLogo onClick={toggleMenuMobile} src={icons.menuIcon} style={{ cursor: 'pointer' }} />
       </MenuMobile>
       <ContainerItems menuOpen={menuOpen}>
         <RenderMenuItems />
-        <IconTheme onClick={toggleTheme} theme={theme} />
+        <IconTheme onClick={toggleTheme} src={theme === 'dark' ? icons.sunIcon : icons.moonIcon} />
       </ContainerItems>
     </Container>
   )
