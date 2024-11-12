@@ -1,12 +1,12 @@
-import { Container, ContainerItems, IconLogo, Menu, MenuItem, MenuMobile, Navigation } from "./styles";
-import iconLogo from '../../assets/svgs/dark/profile.svg'
-import iconMenuMobile from '../../assets/svgs/dark/menu.svg'
+import { Container, ContainerItems, IconLogo, Menu, MenuItem, MenuMobile, Navigation, IconTheme } from "./styles";
 import { useCurrentPage } from "../../context/useCurrentPage";
 import { routesPages } from "../../router/routesPath";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useTheme } from "../../context/useTheme";
 
 export function Navbar() {
+  const {icons, theme, setTheme} = useTheme()
   const { currentPage, setCurrentPage } = useCurrentPage();
   const [menuOpen, setMenuOpen] = useState(false)
   const navigation = useNavigate();
@@ -48,20 +48,26 @@ export function Navbar() {
       )))
   }
 
+  function toggleTheme() {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+
   return (
     <Container>
-      <IconLogo src={iconLogo} onClick={() => {
+      <IconLogo src={icons.profileIcon} onClick={() => {
         navigation('/home')
         setCurrentPage('Home')
       }} />
       <Menu>
         <RenderMenuItems />
+        <IconTheme onClick={toggleTheme} src={theme === 'dark' ? icons.sunIcon : icons.moonIcon} />
       </Menu>
       <MenuMobile>
-        <IconLogo onClick={toggleMenuMobile} src={iconMenuMobile} style={{ cursor: 'pointer' }} />
+        <IconLogo onClick={toggleMenuMobile} src={icons.menuIcon} style={{ cursor: 'pointer' }} />
       </MenuMobile>
       <ContainerItems menuOpen={menuOpen}>
         <RenderMenuItems />
+        <IconTheme onClick={toggleTheme} src={theme === 'dark' ? icons.sunIcon : icons.moonIcon} />
       </ContainerItems>
     </Container>
   )

@@ -29,6 +29,12 @@ export const IconLogo = styled.img`
   }
 `;
 
+export const IconTheme = styled.img`
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+`;
+
 export const Menu = styled.div`
   display: flex;
   align-items: center;

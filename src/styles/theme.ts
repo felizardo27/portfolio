@@ -50,4 +50,4 @@ const darkTheme = {
   socialIconBgColor: "#fefefe",
 };
 
-export const theme = { lightTheme, darkTheme };
+export const themeColor = { lightTheme, darkTheme };
