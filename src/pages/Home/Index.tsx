@@ -24,13 +24,13 @@ export function Home() {
         />
       </SkillsWrite>
       <ContainerIcons>
-        <IconContainer href="https://www.linkedin.com/in/felizardo27/">
+        <IconContainer target="_blank" href="https://www.linkedin.com/in/felizardo27/">
           <Icon src={linkedinIcon} />
         </IconContainer>
-        <IconContainer href="https://github.com/felizardo27">
+        <IconContainer target="_blank" href="https://github.com/felizardo27">
           <Icon src={githubIcon} />
         </IconContainer>
-        <IconContainer href="mailto:jp.felizardo27@gmail.com">
+        <IconContainer target="_blank" href="mailto:jp.felizardo27@gmail.com">
           <Icon src={emailIcon} />
         </IconContainer>
       </ContainerIcons>
