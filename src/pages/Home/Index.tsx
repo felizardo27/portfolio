@@ -1,11 +1,10 @@
 import { Container, ContainerIcons, Icon, IconContainer, NameTitle, SkillsWrite } from "./styles";
-import linkedinIcon from '../../assets/svgs/dark/linkedin.svg'
-import githubIcon from '../../assets/svgs/dark/github.svg'
-import emailIcon from '../../assets/svgs/dark/email.svg'
 
 import Typewriter from 'typewriter-effect';
+import { useTheme } from "../../context/useTheme";
 
 export function Home() {
+  const {icons} = useTheme();
 
   return (
     <Container>
@@ -25,13 +24,13 @@ export function Home() {
       </SkillsWrite>
       <ContainerIcons>
         <IconContainer target="_blank" href="https://www.linkedin.com/in/felizardo27/">
-          <Icon src={linkedinIcon} />
+          <Icon src={icons.linkedinIcon} />
         </IconContainer>
         <IconContainer target="_blank" href="https://github.com/felizardo27">
-          <Icon src={githubIcon} />
+          <Icon src={icons.githubIcon} />
         </IconContainer>
         <IconContainer target="_blank" href="mailto:jp.felizardo27@gmail.com">
-          <Icon src={emailIcon} />
+          <Icon src={icons.emailIcon} />
         </IconContainer>
       </ContainerIcons>
     </Container>
