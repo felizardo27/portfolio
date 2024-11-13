@@ -41,7 +41,6 @@ export const ContainerDescription = styled.div`
   padding-bottom: 80px;
   padding-left: 20px;
   border-left: 2px solid var(--backgroundContrast);
-  border-width: 100%;
   @media screen and (max-width: 830px) {
     gap: 5px;
     padding-bottom: 60px;
@@ -64,7 +63,7 @@ export const DateText = styled.p`
 `;
 
 export const TitleText = styled.p`
-  font-size: 1.7rem;
+  font-size: 1.6rem;
   @media screen and (max-width: 830px) {
     font-size: 1.4rem;
   }
