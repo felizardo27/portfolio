@@ -11,6 +11,9 @@ const iconsDark = {
   moonIcon: darkIcons.moonIcon,
   profileIcon: darkIcons.profileIcon,
   menuIcon: darkIcons.menuIcon,
+  educationIcon: darkIcons.educationIcon,
+  arrowLinkIcon: darkIcons.arrowLinkIcon,
+  arrowLinkDefaultIcon: darkIcons.arrowLinkDefaultIcon,
 }
 
 const iconsLight: typeof iconsDark = {
@@ -21,6 +24,9 @@ const iconsLight: typeof iconsDark = {
   moonIcon: lightIcons.moonIcon,
   profileIcon: lightIcons.profileIcon,
   menuIcon: lightIcons.menuIcon,
+  educationIcon: lightIcons.educationIcon,
+  arrowLinkIcon: lightIcons.arrowLinkIcon,
+  arrowLinkDefaultIcon: lightIcons.arrowLinkDefaultIcon,
 }
 
 export const icons = {

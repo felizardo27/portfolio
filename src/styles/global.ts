@@ -5,7 +5,11 @@ export const GlobalStyles = createGlobalStyle`
   :root {
     --black: ${(props) => props.theme.black};
     --white: ${(props) => props.theme.white};
+    --info100: ${(props) => props.theme.info100};
+    --info200: ${(props) => props.theme.info200};
     --info300: ${(props) => props.theme.info300};
+    --info400: ${(props) => props.theme.info400};
+    --info500: ${(props) => props.theme.info500};
     --navBar100: ${(props) => props.theme.navBar100};
     --navBar200: ${(props) => props.theme.navBar200};
 
