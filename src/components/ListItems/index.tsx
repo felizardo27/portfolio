@@ -1,5 +1,5 @@
 import { useTheme } from "../../context/useTheme";
-import { Container, ContainerDate, ContainerDescription, DateText, Icon, LinkTo, SubText, TitleText } from "./styles";
+import { ArrowIcon, Container, ContainerDate, ContainerDescription, DateText, Icon, SubText, TitleText } from "./styles";
 
 interface ListItemProps {
   imageUrl: string;
@@ -18,7 +18,11 @@ export function ListItems({ imageUrl, date, subText, title, linkTo }: ListItemPr
       <ContainerDescription>
         <ContainerDate>
           <DateText>{date}</DateText>
-          {linkTo && <LinkTo href={linkTo} target="_blank" urlImage={icons.arrowLinkDefaultIcon} />}
+          {linkTo && (
+            <a href={linkTo} target="_blank">
+              <ArrowIcon src={icons.arrowLinkDefaultIcon} alt='Link' />
+            </a>
+          )}
         </ContainerDate>
         <TitleText>{title}</TitleText>
         <SubText>{subText}</SubText>

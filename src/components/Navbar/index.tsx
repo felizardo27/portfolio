@@ -1,7 +1,7 @@
 import { Container, ContainerItems, IconLogo, Menu, MenuItem, MenuMobile, Navigation, IconTheme } from "./styles";
 import { useCurrentPage } from "../../context/useCurrentPage";
 import { routesPages } from "../../router/routesPath";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../context/useTheme";
 
@@ -20,6 +20,12 @@ export function Navbar() {
   function toggleMenuMobile() {
     setMenuOpen(!menuOpen)
   }
+
+  useEffect(() => {
+    if (menuOpen) {
+      setMenuOpen(!menuOpen)
+    }
+  }, [currentPage])
 
   function RenderMenuItems() {
     return (
