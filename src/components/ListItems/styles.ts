@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const Container = styled.div`
   display: flex;
@@ -14,22 +14,23 @@ export const Icon = styled.img`
   border-radius: 50px;
   padding: 5px;
   background-color: var(--backgroundContrast);
+  @media screen and (max-width: 830px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
-interface LinkToProps {
-  urlImage: string;
-}
+export const ArrowIcon = styled.img`
+  width: 1.2rem;
+  height: 1.2rem;
 
-export const LinkTo = styled.a<LinkToProps>`
-  width: 1rem;
-  height: 1rem;
-  border: none;
-  text-decoration: none;
-  ${(({urlImage}) => css`
-    background-image: url(${urlImage});
-  `)};
-  background-size: cover;
-  background-repeat: no-repeat;
+  &:hover {
+    opacity: 0.5;
+  }
+  @media screen and (max-width: 830px) {
+    width: 0.9;
+    height: 0.9rem;
+  }
 `;
 
 export const ContainerDescription = styled.div`
@@ -40,7 +41,10 @@ export const ContainerDescription = styled.div`
   padding-bottom: 80px;
   padding-left: 20px;
   border-left: 2px solid var(--backgroundContrast);
-  border-width: 100%;
+  @media screen and (max-width: 830px) {
+    gap: 5px;
+    padding-bottom: 60px;
+  }
 `;
 
 export const ContainerDate = styled.div`
@@ -53,10 +57,16 @@ export const ContainerDate = styled.div`
 export const DateText = styled.p`
   color: var(--info300);
   font-size: 1rem;
+  @media screen and (max-width: 830px) {
+    font-size: 0.8rem;
+  }
 `;
 
 export const TitleText = styled.p`
-  font-size: 1.7rem;
+  font-size: 1.6rem;
+  @media screen and (max-width: 830px) {
+    font-size: 1.4rem;
+  }
 `;
 
 export const SubText = styled.p`
