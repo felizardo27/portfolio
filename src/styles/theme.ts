@@ -2,7 +2,11 @@ const palette = {
   black: "#000000",
   white: "#FFFFFF",
 
+  info100: "#B4D1F2",
+  info200: "#8AB9E0",
   info300: "#3D84C6",
+  info400: "#2C6D9D",
+  info500: "#1A4C73",
 
   navBar100: "#FEFEFE",
   navBar200: "#DEDEDE",
