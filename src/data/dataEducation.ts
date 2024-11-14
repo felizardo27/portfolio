@@ -8,6 +8,14 @@ export function dataEducation() {
   const dataPt = [
     {
       imageUrl: "https://github.com/alura.png",
+      date: "31 de maio de 2022 a 23 de maio de 2023",
+      title: "Alura",
+      subText: "",
+      linkTo:
+        "https://cursos.alura.com.br/user/felizardo27/fullCertificate/2d273116031bc91b38694b70308d5b96?lang=pt_BR",
+    },
+    {
+      imageUrl: "https://github.com/alura.png",
       date: "01 de Outubro de 2022",
       title: "Formação React com TypeScript",
       subText: "Alura",
@@ -39,6 +47,14 @@ export function dataEducation() {
   ];
 
   const dataEn = [
+    {
+      imageUrl: "https://github.com/alura.png",
+      date: "May 31, 2022 to May 23, 2023",
+      title: "Alura",
+      subText: "",
+      linkTo:
+        "https://cursos.alura.com.br/user/felizardo27/fullCertificate/2d273116031bc91b38694b70308d5b96?lang=en",
+    },
     {
       imageUrl: "https://github.com/alura.png",
       date: "October 01, 2022",
