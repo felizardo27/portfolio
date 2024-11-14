@@ -18,10 +18,3 @@ export const Title = styled.h3`
   font-size: 3rem;
   font-weight: 700;
 `;
-
-export const ContainerList = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: flex-start;
-`;

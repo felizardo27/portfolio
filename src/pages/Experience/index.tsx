@@ -1,9 +1,9 @@
-import { Container } from "./styles";
+import { Container, Title } from "./styles";
 
 export function Experience() {
   return (
     <Container>
-      <p>Experience</p>
+      <Title>Experience</Title>
     </Container>
   )
 }

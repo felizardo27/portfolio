@@ -1,8 +1,8 @@
 import { useTheme } from "../../context/useTheme";
-import { ArrowIcon, Container, ContainerDate, ContainerDescription, DateText, Icon, SubText, TitleText } from "./styles";
+import { ArrowIcon, Container, ContainerDate, ContainerDescription, DateText, Icon, NoIcon, SubText, TitleText } from "./styles";
 
-interface ListItemProps {
-  imageUrl: string;
+export interface ListItemProps {
+  imageUrl?: string;
   date: string;
   title: string;
   subText: string;
@@ -14,7 +14,7 @@ export function ListItems({ imageUrl, date, subText, title, linkTo }: ListItemPr
 
   return (
     <Container>
-      <Icon src={imageUrl} />
+      {imageUrl ? <Icon src={imageUrl} /> : <NoIcon />}
       <ContainerDescription>
         <ContainerDate>
           <DateText>{date}</DateText>

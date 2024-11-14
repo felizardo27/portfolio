@@ -1,14 +1,15 @@
+import { useLanguage } from "../../context/useLanguage";
 import { skillsItem, dataSkills } from "./dataSkills";
 import { Container, Icon, SkillIcon, SkillsContainer, ContainerIcon, SkillTitle, Title, SkillItem } from "./styles";
 
 
 export function Skills() {
-
+  const {language} = useLanguage();
 
   function RenderSkills({ title, icons }: skillsItem) {
     return (
       <SkillItem>
-        <SkillTitle>{title}</SkillTitle>
+        <SkillTitle>{title[language]}</SkillTitle>
         <ContainerIcon>
           {icons.map(icon =>
             <SkillIcon>

@@ -29,7 +29,7 @@ export const IconLogo = styled.img`
   }
 `;
 
-export const IconTheme = styled.img`
+export const Icon = styled.img`
   height: 30px;
   width: 30px;
   cursor: pointer;
@@ -48,6 +48,10 @@ export const Menu = styled.div`
 
 export const MenuMobile = styled.div`
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   @media screen and (min-width: 830px) {
     display: none;
   }
@@ -99,7 +103,10 @@ export const MenuItem = styled.p<MenuItemProps>`
   position: relative;
   width: 100%;
   text-align: center;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
   @media screen and (max-width: 830px) {
     font-size: 1.5rem;
     &:hover {

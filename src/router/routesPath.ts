@@ -7,52 +7,76 @@ import { Skills } from "../pages/Skills";
 
 interface RoutesPageProps {
   page: () => React.ReactNode;
-  pageName: string,
+  pageName: {
+    ptBr: string;
+    enUs: string
+  },
   path: string;
   links?: {
-    en: string,
-    pt: string
+    ptBr: string,
+    enUs: string
   }
 }
 
 export const routesPages: RoutesPageProps[] = [
   {
     page: Home,
-    pageName: 'Home',
-    path: "/home",
+    pageName: {
+      ptBr: 'Início',
+      enUs: 'Home'
+    },
+    path: '/home',
   },
   {
     page: About,
-    pageName: 'About',
-    path: '/about'
+    pageName: {
+      ptBr: 'Sobre',
+      enUs: 'About'
+    },
+    path: '/about',
   },
   {
     page: Skills,
-    pageName: 'Skills',
-    path: '/skills'
+    pageName: {
+      ptBr: 'Habilidades',
+      enUs: 'Skills'
+    },
+    path: '/skills',
   },
   {
     page: Education,
-    pageName: 'Education',
-    path: '/education'
+    pageName: {
+      ptBr: 'Educação',
+      enUs: 'Education'
+    },
+    path: '/education',
   },
   {
     page: Experience,
-    pageName: 'Experience',
-    path: '/experience'
+    pageName: {
+      ptBr: 'Experiência',
+      enUs: 'Experience'
+    },
+    path: '/experience',
   },
   {
     page: Projects,
-    pageName: 'Projects',
-    path: '/projects'
+    pageName: {
+      ptBr: 'Projetos',
+      enUs: 'Projects'
+    },
+    path: '/projects',
   },
   {
     page: Home,
-    pageName: 'Resume',
-    path: '/Home',
+    pageName: {
+      ptBr: 'Currículo',
+      enUs: 'Resume'
+    },
+    path: '/resume',
     links: {
-      en: 'https://drive.google.com/file/d/1KY-6HSL663sJwYDSRf53a9v6oiMZS7o0/view?usp=sharing',
-      pt: 'https://drive.google.com/file/d/1KY-6HSL663sJwYDSRf53a9v6oiMZS7o0/view?usp=sharing'
+      ptBr: 'https://drive.google.com/file/d/1kd7UrYY_vkBYN2XcF_meekisro2KUCeJ/view?usp=sharing',
+      enUs: 'https://drive.google.com/file/d/1KY-6HSL663sJwYDSRf53a9v6oiMZS7o0/view?usp=sharing'
     }
   },
 ];

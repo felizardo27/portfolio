@@ -1,7 +1,7 @@
 import { create } from "zustand";
 import { IconsProps } from "../styles/icons/icons";
 import { darkIcons } from "../styles/icons/darkIcons";
-import { lightIcons } from "../styles/icons/lighIcons";
+import { lightIcons } from "../styles/icons/lightIcons";
 
 export type ThemeType = "dark" | "light";
 

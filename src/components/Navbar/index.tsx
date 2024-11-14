@@ -1,12 +1,14 @@
-import { Container, ContainerItems, IconLogo, Menu, MenuItem, MenuMobile, Navigation, IconTheme } from "./styles";
+import { Container, ContainerItems, IconLogo, Menu, MenuItem, MenuMobile, Navigation, Icon } from "./styles";
 import { useCurrentPage } from "../../context/useCurrentPage";
 import { routesPages } from "../../router/routesPath";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../context/useTheme";
+import { useLanguage } from "../../context/useLanguage";
 
 export function Navbar() {
-  const {icons, theme, setTheme} = useTheme()
+  const { icons, theme, setTheme } = useTheme()
+  const { language, setLanguage } = useLanguage()
   const { currentPage, setCurrentPage } = useCurrentPage();
   const [menuOpen, setMenuOpen] = useState(false)
   const navigation = useNavigate();
@@ -21,42 +23,47 @@ export function Navbar() {
     setMenuOpen(!menuOpen)
   }
 
+  function toggleTheme() {
+    setTheme(theme === 'dark' ? 'light' : 'dark')
+  }
+
+  function toggleLanguage() {
+    setLanguage(language === "ptBr" ? 'enUs' : 'ptBr')
+  }
+
   useEffect(() => {
     if (menuOpen) {
       setMenuOpen(!menuOpen)
     }
-  }, [currentPage])
+  }, [currentPage, theme])
 
   function RenderMenuItems() {
     return (
       routesPages.map(item => (
-        item.pageName === 'Resume' ? (
+        item.path === '/resume' ? (
           <MenuItem
-            key={item.pageName}
-            onClick={() => goTo(item.links?.en)}
+            key={item.pageName[language]}
+            onClick={() => goTo(language === 'ptBr' ? item.links?.ptBr : item.links?.enUs)}
           >
-            {item.pageName}
+            {item.pageName[language]}
           </MenuItem>
         ) : (
           <Navigation
-            key={item.pageName}
+            key={item.pageName[language]}
             to={item.path}
             onClick={() => {
               menuOpen && toggleMenuMobile()
-              setCurrentPage(item.pageName)
+              setCurrentPage(item.pageName[language])
             }}
           >
-            <MenuItem isActive={item.pageName === currentPage}>
-              {item.pageName}
+            <MenuItem isActive={item.pageName[language] === currentPage}>
+              {item.pageName[language]}
             </MenuItem>
           </Navigation>
         )
       )))
   }
 
-  function toggleTheme() {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
 
   return (
     <Container>
@@ -66,14 +73,18 @@ export function Navbar() {
       }} />
       <Menu>
         <RenderMenuItems />
-        <IconTheme onClick={toggleTheme} src={theme === 'dark' ? icons.sunIcon : icons.moonIcon} />
+        <Icon onClick={toggleTheme} src={theme === 'dark' ? icons.sunIcon : icons.moonIcon} />
+        <Icon onClick={toggleLanguage} src={language === 'enUs' ? icons.brazilFlagIcon : icons.usaFlagIcon} />
       </Menu>
       <MenuMobile>
         <IconLogo onClick={toggleMenuMobile} src={icons.menuIcon} style={{ cursor: 'pointer' }} />
+        <Icon onClick={toggleLanguage} src={language === 'enUs' ? icons.brazilFlagIcon : icons.usaFlagIcon} />
       </MenuMobile>
       <ContainerItems menuOpen={menuOpen}>
         <RenderMenuItems />
-        <IconTheme onClick={toggleTheme} src={theme === 'dark' ? icons.sunIcon : icons.moonIcon} />
+        <MenuItem onClick={toggleTheme}>
+          <Icon src={theme === 'dark' ? icons.sunIcon : icons.moonIcon} />{`Modo ${theme === `dark` ? 'light' : 'dark'}`}
+        </MenuItem>
       </ContainerItems>
     </Container>
   )
