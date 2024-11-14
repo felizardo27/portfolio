@@ -24,9 +24,9 @@ export function Skills() {
 
   return (
     <Container>
-      <Title>Skills</Title>
+      <Title>{dataSkills.title[language]}</Title>
       <SkillsContainer>
-        {dataSkills.map(item =>
+        {dataSkills.data.map(item =>
           <RenderSkills
             title={item.title}
             icons={item.icons}

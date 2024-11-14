@@ -2,21 +2,38 @@ import { Container, ContainerIcons, Icon, IconContainer, NameTitle, SkillsWrite 
 
 import Typewriter from 'typewriter-effect';
 import { useTheme } from "../../context/useTheme";
+import { useLanguage } from "../../context/useLanguage";
 
 export function Home() {
-  const {icons} = useTheme();
+  const { icons } = useTheme();
+  const { language } = useLanguage();
+
+  const data = {
+    ptBr: {
+      text: "Desenvolvedor Front-end",
+      deleteText: 9,
+      secondText: "Mobile"
+    },
+    enUs: {
+      text: "I'm a Front-end Developer",
+      deleteText: 19,
+      secondText: "Mobile Developer"
+    },
+  }
+
 
   return (
     <Container>
       <NameTitle>João Pedro Felizardo</NameTitle>
       <SkillsWrite>
         <Typewriter
+          key={language}
           onInit={(typewriter) => {
             typewriter
-              .typeString("I'm a Front-end Developer")
+              .typeString(data[language].text)
               .pauseFor(500)
-              .deleteChars(19)
-              .typeString("Mobile Developer")
+              .deleteChars(data[language].deleteText)
+              .typeString(data[language].secondText)
               .start();
           }}
           options={{ loop: true, autoStart: true }}
