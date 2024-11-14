@@ -74,11 +74,11 @@ export function Navbar() {
       <Menu>
         <RenderMenuItems />
         <Icon onClick={toggleTheme} src={theme === 'dark' ? icons.sunIcon : icons.moonIcon} />
-        <Icon onClick={toggleLanguage} src={language === 'enUs' ? icons.brazilFlagIcon : icons.usaFlagIcon} />
+        <Icon onClick={toggleLanguage} src={language === 'ptBr' ? icons.brazilFlagIcon : icons.usaFlagIcon} />
       </Menu>
       <MenuMobile>
         <IconLogo onClick={toggleMenuMobile} src={icons.menuIcon} style={{ cursor: 'pointer' }} />
-        <Icon onClick={toggleLanguage} src={language === 'enUs' ? icons.brazilFlagIcon : icons.usaFlagIcon} />
+        <Icon onClick={toggleLanguage} src={language === 'ptBr' ? icons.brazilFlagIcon : icons.usaFlagIcon} />
       </MenuMobile>
       <ContainerItems menuOpen={menuOpen}>
         <RenderMenuItems />
