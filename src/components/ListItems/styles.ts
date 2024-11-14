@@ -20,6 +20,16 @@ export const Icon = styled.img`
   }
 `;
 
+export const NoIcon = styled.div`
+  width: 50px;
+  height: 50px;
+  padding: 5px;
+  @media screen and (max-width: 830px) {
+    width: 30px;
+    height: 30px;
+  }
+`;
+
 export const ArrowIcon = styled.img`
   width: 1.2rem;
   height: 1.2rem;

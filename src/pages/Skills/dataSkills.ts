@@ -1,5 +1,8 @@
 export interface skillsItem {
-  title: string;
+  title: {
+    enUs: string;
+    ptBr: string;
+  };
   icons: {
     name: string;
     url: string;
@@ -8,7 +11,10 @@ export interface skillsItem {
 
 export const dataSkills: skillsItem[] = [
   {
-    title: "Languages & Databases",
+    title: {
+      enUs: "Languages & Databases",
+      ptBr: "Linguagens & Bancos de Dados"
+    },
     icons: [
       {
         name: "JavaScript",
@@ -33,7 +39,10 @@ export const dataSkills: skillsItem[] = [
     ],
   },
   {
-    title: "Frameworks & Technologies",
+    title: {
+      enUs: "Frameworks & Technologies",
+      ptBr: "Frameworks & Tecnologias"
+    },
     icons: [
       {
         name: "Adonis",
@@ -58,7 +67,10 @@ export const dataSkills: skillsItem[] = [
     ],
   },
   {
-    title: "Tools & Platforms",
+    title: {
+      enUs: "Tools & Platforms",
+      ptBr: "Ferramentas & Plataformas"
+    },
     icons: [
       {
         name: "Android Studio",
@@ -87,3 +99,4 @@ export const dataSkills: skillsItem[] = [
     ],
   },
 ];
+

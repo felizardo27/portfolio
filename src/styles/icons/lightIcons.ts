@@ -9,6 +9,8 @@ import educationIcon from "../../assets/svgs/light/education.svg";
 import arrowLinkIcon from "../../assets/svgs/light/arrowLink.svg.svg";
 
 import arrowLinkDefaultIcon from "../../assets/svgs/arrowLink.svg";
+import brazilFlagIcon from "../../assets/svgs/brazilFlag.svg";
+import usaFlagIcon from "../../assets/svgs/usaFlag.svg";
 
 export const lightIcons = {
   githubIcon,
@@ -21,4 +23,6 @@ export const lightIcons = {
   educationIcon,
   arrowLinkIcon,
   arrowLinkDefaultIcon,
+  brazilFlagIcon,
+  usaFlagIcon,
 };

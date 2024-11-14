@@ -1,6 +1,5 @@
 import { darkIcons } from "./darkIcons"
-import { lightIcons } from "./lighIcons"
-
+import { lightIcons } from "./lightIcons"
 
 
 const iconsDark = {
@@ -14,6 +13,8 @@ const iconsDark = {
   educationIcon: darkIcons.educationIcon,
   arrowLinkIcon: darkIcons.arrowLinkIcon,
   arrowLinkDefaultIcon: darkIcons.arrowLinkDefaultIcon,
+  brazilFlagIcon: darkIcons.brazilFlagIcon,
+  usaFlagIcon: darkIcons.usaFlagIcon,
 }
 
 const iconsLight: typeof iconsDark = {
@@ -27,6 +28,8 @@ const iconsLight: typeof iconsDark = {
   educationIcon: lightIcons.educationIcon,
   arrowLinkIcon: lightIcons.arrowLinkIcon,
   arrowLinkDefaultIcon: lightIcons.arrowLinkDefaultIcon,
+  brazilFlagIcon: lightIcons.brazilFlagIcon,
+  usaFlagIcon: lightIcons.usaFlagIcon,
 }
 
 export const icons = {
