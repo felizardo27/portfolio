@@ -8,8 +8,8 @@ interface LanguageStoreProps {
 }
 
 function getInitialLanguage(): LanguageType {
-  const storedLanguage = localStorage.getItem("language") as LanguageType;
-  return storedLanguage ? storedLanguage : "ptBr";
+  const browserLanguage = navigator.language || navigator.languages[0];
+  return browserLanguage.startsWith('pt') ? 'ptBr' : 'enUs';
 }
 
 export const useLanguage = create<LanguageStoreProps>((set) => ({
