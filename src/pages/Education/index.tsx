@@ -8,8 +8,8 @@ export function Education() {
 
   return (
     <Container>
-      <Title>Education</Title>
-      <LineItems data={data} />
+      <Title>{data.title}</Title>
+      <LineItems data={data.data} />
     </Container>
   )
 }

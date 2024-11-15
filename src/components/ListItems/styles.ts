@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const Container = styled.div`
   display: flex;
   align-items: start;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 18px;
   position: relative;
+  width: 100%;
 `;
 
 export const Icon = styled.img`
@@ -14,16 +15,6 @@ export const Icon = styled.img`
   border-radius: 50px;
   padding: 5px;
   background-color: var(--backgroundContrast);
-  @media screen and (max-width: 830px) {
-    width: 30px;
-    height: 30px;
-  }
-`;
-
-export const NoIcon = styled.div`
-  width: 50px;
-  height: 50px;
-  padding: 5px;
   @media screen and (max-width: 830px) {
     width: 30px;
     height: 30px;
@@ -46,6 +37,7 @@ export const ArrowIcon = styled.img`
 export const ContainerDescription = styled.div`
   display: flex;
   flex-direction: column;
+  width: 100%;
   gap: 10px;
   font-weight: 800;
   padding-bottom: 80px;
@@ -81,4 +73,12 @@ export const TitleText = styled.p`
 
 export const SubText = styled.p`
   font-size: 0.9rem;
+`;
+
+export const Description = styled.p`
+  font-size: 0.9rem;
+  font-weight: 400;
+  width: 100%;
+  max-width: 450px;
+  text-align: start;
 `;

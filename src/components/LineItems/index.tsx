@@ -15,6 +15,7 @@ export function LineItems({data}: LineItemsProps) {
           date={item.date}
           title={item.title}
           subText={item.subText}
+          description={item.description}
           linkTo={item?.linkTo}
       />
       )}
