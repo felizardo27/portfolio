@@ -46,7 +46,7 @@ export const routesPages: RoutesPageProps[] = [
   {
     page: Education,
     pageName: {
-      ptBr: 'Educação',
+      ptBr: 'Formação',
       enUs: 'Education'
     },
     path: '/education',

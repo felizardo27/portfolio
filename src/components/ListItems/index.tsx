@@ -1,20 +1,21 @@
 import { useTheme } from "../../context/useTheme";
-import { ArrowIcon, Container, ContainerDate, ContainerDescription, DateText, Icon, NoIcon, SubText, TitleText } from "./styles";
+import { ArrowIcon, Container, ContainerDate, ContainerDescription, DateText, Description, Icon, SubText, TitleText } from "./styles";
 
 export interface ListItemProps {
   imageUrl?: string;
   date: string;
   title: string;
-  subText: string;
+  subText?: string;
+  description?: string;
   linkTo?: string;
 }
 
-export function ListItems({ imageUrl, date, subText, title, linkTo }: ListItemProps) {
+export function ListItems({ imageUrl, date, subText, title, linkTo, description }: ListItemProps) {
   const { icons } = useTheme();
 
   return (
     <Container>
-      {imageUrl ? <Icon src={imageUrl} /> : <NoIcon />}
+      {imageUrl && <Icon src={imageUrl} />}
       <ContainerDescription>
         <ContainerDate>
           <DateText>{date}</DateText>
@@ -25,7 +26,8 @@ export function ListItems({ imageUrl, date, subText, title, linkTo }: ListItemPr
           )}
         </ContainerDate>
         <TitleText>{title}</TitleText>
-        <SubText>{subText}</SubText>
+        {subText && <SubText>{subText}</SubText>}
+        {description && <Description>{description}</Description>}
       </ContainerDescription>
     </Container>
   )
