@@ -3,7 +3,7 @@ import { ContainerFooter, ContainerButtons, Button, ContainerTechnologies, Techn
 
 export function CardFooter({ buttons, technologies }: Pick<CardProps, 'buttons' | 'technologies'>) {
 
-  function openUrl(url: string) {
+  function openUrl(url: string | undefined) {
     window.open(url, "_blank")
   }
 
