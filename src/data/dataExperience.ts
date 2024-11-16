@@ -1,12 +1,13 @@
 //dataExperience
 
+import { ListItemProps } from "../components/ListItems";
 import { useLanguage } from "../context/useLanguage";
-import { dataListItemsProps } from "./dataTypes";
+import { DataProps } from "./dataTypes";
 
 export function dataExperience() {
   const { language } = useLanguage();
 
-  const dataPt: dataListItemsProps = {
+  const dataPt: DataProps<ListItemProps> = {
     title: "Experiências",
     data: [
       {
@@ -52,7 +53,7 @@ export function dataExperience() {
     ],
   };
 
-  const dataEn: dataListItemsProps = {
+  const dataEn: DataProps<ListItemProps> = {
     title: "Experience",
     data: [
       {
