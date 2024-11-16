@@ -1,6 +1,4 @@
-import { ListItemProps } from "../components/ListItems";
-
-export interface dataListItemsProps {
+export interface DataProps<T> {
   title: string;
-  data: ListItemProps[]
+  data: T[];
 }
