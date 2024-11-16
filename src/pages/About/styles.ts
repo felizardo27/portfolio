@@ -2,16 +2,15 @@ import styled from "styled-components";
 
 export const Container = styled.div`
   grid-area: main;
+  padding: 0 30px;
   height: 100%;
   background-color: var(--background);
   color: var(--backgroundContrast);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-direction: column;
-  @media screen and (max-width: 1260px) {
-    justify-content: space-around;
-  }
+  gap: 30px;
 `;
 
 export const Title = styled.h3`

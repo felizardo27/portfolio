@@ -1,13 +1,14 @@
+import { ListItemProps } from "../components/ListItems";
 import { useLanguage } from "../context/useLanguage";
 import { useTheme } from "../context/useTheme";
-import { dataListItemsProps } from "./dataTypes";
+import { DataProps } from "./dataTypes";
 
 
 export function dataEducation() {
   const { icons } = useTheme();
   const { language } = useLanguage();
 
-  const dataPt: dataListItemsProps = {
+  const dataPt: DataProps<ListItemProps> = {
     title: "Formações",
     data: [
       {
@@ -51,7 +52,7 @@ export function dataEducation() {
     ],
   };
 
-  const dataEn: dataListItemsProps = {
+  const dataEn: DataProps<ListItemProps> = {
     title: "Education",
     data: [
       {
