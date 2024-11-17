@@ -23,7 +23,7 @@ export function Skills() {
   }
 
   return (
-    <Container>
+    <Container className="page">
       <Title>{dataSkills.title[language]}</Title>
       <SkillsContainer>
         {dataSkills.data.map(item =>
