@@ -2,6 +2,11 @@ import { CardProps } from "../components/Card";
 import { useLanguage } from "../context/useLanguage";
 import { DataProps } from "./dataTypes";
 
+import nubbleApp from "../assets/projects/nubbleApp.png";
+import protfolio from "../assets/projects/protfolio.png";
+import pokedexRN from "../assets/projects/pokedexRN.png";
+import pokedexReact from "../assets/projects/pokedexReact.gif";
+
 export function dataProjects() {
   const { language } = useLanguage();
 
@@ -20,8 +25,7 @@ export function dataProjects() {
                 "The Nubble App adopts a layered architecture with principles of Clean Architecture, SOLID, design patterns, and MVVM (Model-View-ViewModel).",
                 "This structure, validated in projects with thousands of users, aims to create apps that are easy to understand and maintain, as well as scalable in terms of codebase and team.",
               ],
-        imageUrl:
-          "https://github.com/user-attachments/assets/a267e599-5f44-41c9-92c1-be57d53d01e3",
+        imageUrl: nubbleApp,
         technologies: [
           "React Native CLI",
           "TypeScript",
@@ -31,7 +35,7 @@ export function dataProjects() {
           "TanStack Query",
           "Shopify Restyle",
           "Husky",
-          "React Native Vision Camera"
+          "React Native Vision Camera",
         ],
         buttons: {
           repository: "https://github.com/felizardo27/NubbleApp",
@@ -55,8 +59,7 @@ export function dataProjects() {
                 "Language toggle Support",
                 "Context using Zustand",
               ],
-        imageUrl:
-          "https://github.com/user-attachments/assets/e6e70203-be1d-4b1a-ba58-f31b2508be21",
+        imageUrl: protfolio,
         technologies: ["React", "TypeScript", "Styled-Components", "Zustand"],
         buttons: {
           repository: "https://github.com/felizardo27/portfolio",
@@ -79,8 +82,7 @@ export function dataProjects() {
                 "Listing HP, Attack, and other stats",
                 "Listing abilities",
               ],
-        imageUrl:
-          "https://camo.githubusercontent.com/13c232afbbdcf5cbffe36aa302e0dfbc33a1963687bf9a6ec744dd738c593689/68747470733a2f2f692e696d6775722e636f6d2f6d64526e3848722e706e67",
+        imageUrl: pokedexRN,
         technologies: [
           "React Native",
           "Expo",
@@ -107,8 +109,7 @@ export function dataProjects() {
                 "It displays the ID, name, and GIF of the Pokémon.",
                 "It has two buttons to switch between Pokémon, and a search feature by name or ID.",
               ],
-        imageUrl:
-          "https://user-images.githubusercontent.com/72112006/184494149-f9fbe8a9-4448-457c-9069-66f831626c87.gif",
+        imageUrl: pokedexReact,
         technologies: ["React", "TypeScript", "SASS"],
         buttons: {
           repository: "https://github.com/felizardo27/pokedex-react",

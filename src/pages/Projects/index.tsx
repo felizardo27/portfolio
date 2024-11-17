@@ -7,7 +7,7 @@ export function Projects() {
   const { data } = dataProjects();
 
   return (
-    <Container>
+    <Container className="page">
       <Title>{data.title}</Title>
       <ContainerCards>
         {data.data.map(item => (

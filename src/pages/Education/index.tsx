@@ -7,7 +7,7 @@ export function Education() {
 
 
   return (
-    <Container>
+    <Container className="page">
       <Title>{data.title}</Title>
       <LineItems data={data.data} />
     </Container>

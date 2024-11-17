@@ -23,7 +23,7 @@ export function Home() {
 
 
   return (
-    <Container>
+    <Container className="page">
       <NameTitle>João Pedro Felizardo</NameTitle>
       <SkillsWrite>
         <Typewriter
