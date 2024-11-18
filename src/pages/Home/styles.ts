@@ -21,7 +21,7 @@ export const NameTitle = styled.h2`
   }
 `;
 
-export const SkillsWrite = styled.p`
+export const SkillsWrite = styled.div`
   font-size: 2rem;
   margin-bottom: 68px;
 
