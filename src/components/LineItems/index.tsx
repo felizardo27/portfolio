@@ -6,18 +6,19 @@ interface LineItemsProps {
   data: ListItemProps[]
 }
 
-export function LineItems({data}: LineItemsProps) {
+export function LineItems({ data }: LineItemsProps) {
   return (
     <ContainerList>
-      {data.map(item => 
+      {data.map((item, index) =>
         <ListItems
+          key={index}
           imageUrl={item?.imageUrl}
           date={item.date}
           title={item.title}
           subText={item.subText}
           description={item.description}
           linkTo={item?.linkTo}
-      />
+        />
       )}
     </ContainerList>
   )
