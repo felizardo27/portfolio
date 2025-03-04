@@ -75,8 +75,8 @@ export const routesPages: RoutesPageProps[] = [
     },
     path: '/resume',
     links: {
-      ptBr: 'https://drive.google.com/file/d/1kd7UrYY_vkBYN2XcF_meekisro2KUCeJ/view?usp=sharing',
-      enUs: 'https://drive.google.com/file/d/1KY-6HSL663sJwYDSRf53a9v6oiMZS7o0/view?usp=sharing'
+      ptBr: 'https://drive.google.com/file/d/1luqMQ9HInzvuiSoBIkEVtfMRS4uiH_2k/view?usp=sharing',
+      enUs: 'https://drive.google.com/file/d/1TnDJfcJk__9DkQIPXBDkJI5_nUjoplIJ/view?usp=sharing'
     }
   },
 ];
