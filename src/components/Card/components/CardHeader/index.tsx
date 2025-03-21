@@ -1,7 +1,7 @@
-import { CardProps } from "../..";
+import { ProjectProps } from "../../../../interfaces/firebaseTypes";
 import { ContainerHeader, Cover } from "./styles";
 
-export function CardHeader({ imageUrl }: Pick<CardProps, 'imageUrl'>) {
+export function CardHeader({ imageUrl }: Pick<ProjectProps, 'imageUrl'>) {
   return (
     <ContainerHeader>
       {imageUrl && <Cover src={imageUrl} />}
