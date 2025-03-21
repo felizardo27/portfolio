@@ -1,25 +1,35 @@
-import { ListItemProps, ListItems } from "../ListItems";
+import { useTheme } from "../../context/useTheme";
+import { ListItemProps } from "../../interfaces/firebaseTypes";
+import { ListItems } from "../ListItems";
 import { ContainerList } from "./styles";
 
 
 interface LineItemsProps {
-  data: ListItemProps[]
+  data: Record<number, ListItemProps>;
 }
 
 export function LineItems({ data }: LineItemsProps) {
+  const { icons } = useTheme();
+
   return (
     <ContainerList>
-      {data.map((item, index) =>
-        <ListItems
-          key={index}
-          imageUrl={item?.imageUrl}
-          date={item.date}
-          title={item.title}
-          subText={item.subText}
-          description={item.description}
-          linkTo={item?.linkTo}
-        />
-      )}
+      {Object.entries(data).map(([index, item]) => {
+        const image = item?.type === 'college'
+          ? icons.educationIcon
+          : `https://github.com/${item.type}.png`;
+
+        return (
+          <ListItems
+            key={index}
+            imageUrl={item.type ? image : ''}
+            date={item.date}
+            title={item.title}
+            subText={item.subTitle}
+            description={item.description}
+            linkTo={item?.url}
+          />
+        )
+      })}
     </ContainerList>
-  )
+  );
 }

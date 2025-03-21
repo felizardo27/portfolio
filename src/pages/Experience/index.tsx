@@ -3,12 +3,17 @@ import { dataExperience } from "../../data/dataExperience";
 import { Container, Title } from "./styles";
 
 export function Experience() {
-  const {data} = dataExperience();
+  const { data } = dataExperience();
 
   return (
     <Container className="page">
-      <Title>{data.title}</Title>
-      <LineItems data={data.data} />
+      {data && (
+        <>
+          <Title>{data.title}</Title>
+          <LineItems data={data.data} />
+        </>
+      )}
+
     </Container>
   )
 }

@@ -2,27 +2,17 @@ import { Container } from "./styles";
 import { CardContent } from "./components/CardContent";
 import { CardFooter } from "./components/CardFooter";
 import { CardHeader } from "./components/CardHeader";
+import { ProjectProps } from "../../interfaces/firebaseTypes";
+import { useLanguage } from "../../context/useLanguage";
 
-
-export interface CardProps {
-  imageUrl?: string;
-  titleCard: string;
-  description: string[];
-  buttons: {
-    repository?: string;
-    liveUrl?: string;
-  },
-  technologies: string[]
-}
-
-export function Card({ imageUrl, titleCard, description, buttons, technologies }: CardProps) {
-
+export function Card({ title, description, imageUrl, buttons, technologies}: ProjectProps) {
+  const {language} = useLanguage();
   return (
     <Container>
       <CardHeader imageUrl={imageUrl} />
       <CardContent
-        titleCard={titleCard}
-        description={description}
+        titleCard={title}
+        description={language === 'enUs' ? description.en : description.pt}
       />
       <CardFooter
         buttons={buttons}

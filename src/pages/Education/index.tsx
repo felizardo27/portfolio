@@ -5,11 +5,15 @@ import { Container, Title } from "./styles";
 export function Education() {
   const { data } = dataEducation();
 
-
   return (
     <Container className="page">
-      <Title>{data.title}</Title>
-      <LineItems data={data.data} />
+      {data && (
+        <>
+          <Title>{data.title}</Title>
+          <LineItems data={data.data} />
+        </>
+      )}
+
     </Container>
   )
 }

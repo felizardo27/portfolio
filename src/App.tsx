@@ -6,13 +6,16 @@ import { Router } from "./router/Router";
 import { useTheme } from "./context/useTheme";
 import { useEffect } from "react";
 import { useFirebase } from "./hooks/useFirebase";
+import { useFirebaseStore } from "./context/useFirebaseData";
 
 function App() {
   const { theme } = useTheme();
   const { analytics } = useFirebase();
+  const { getData } = useFirebaseStore();
 
   useEffect(() => {
     analytics;
+    getData();
   }, [])
 
   return (
