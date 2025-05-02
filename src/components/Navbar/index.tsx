@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "../../context/useTheme";
 import { useLanguage } from "../../context/useLanguage";
+import { dataResume } from "../../data/dataResume";
 
 export function Navbar() {
   const { icons, theme, setTheme } = useTheme()
@@ -12,6 +13,8 @@ export function Navbar() {
   const { currentPage, setCurrentPage } = useCurrentPage();
   const [menuOpen, setMenuOpen] = useState(false)
   const navigation = useNavigate();
+
+  const {data} = dataResume();
 
   function goTo(url: string | undefined) {
     if (url) {
@@ -43,7 +46,7 @@ export function Navbar() {
         item.path === '/resume' ? (
           <MenuItem
             key={item.pageName[language]}
-            onClick={() => goTo(language === 'ptBr' ? item.links?.ptBr : item.links?.enUs)}
+            onClick={() => goTo(data)}
           >
             {item.pageName[language]}
           </MenuItem>
