@@ -10,7 +10,7 @@ export function CardFooter({ buttons, technologies }: Pick<ProjectProps, 'button
   return (
     <ContainerFooter>
       <ContainerButtons>
-        {buttons?.repository && <Button onClick={() => openUrl(buttons.repository)}>GiHub</Button>}
+        {buttons?.repository && <Button onClick={() => openUrl(buttons.repository)}>GitHub</Button>}
         {buttons?.liveUrl && <Button onClick={() => openUrl(buttons.liveUrl)}>Live</Button>}
       </ContainerButtons>
       <ContainerTechnologies>
