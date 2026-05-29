@@ -3,7 +3,6 @@ import styled from 'styled-components';
 export const StyledHeroSection = styled.section`
   padding: 8rem 0 6rem 0;
   width: 100%;
-  height: 100vh;
   box-sizing: border-box;
   display: flex;
   align-items: center;
