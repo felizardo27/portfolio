@@ -1,92 +1,117 @@
-import React from 'react';
-import { useLanguageStore } from '../../../context/useLanguageStore';
-import { Container } from '../../Container';
-import { SectionHeader } from '../../SectionHeader';
-import { ProjectCard } from '../../ProjectCard';
-import { Button } from '../../Button';
-import { Github } from 'lucide-react';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '../../ScrollReveal';
-import { dataProjects } from '../../../data/dataProjects';
-import { dataSocialLinks } from '../../../data/dataSocialLinks';
-import { ProjectProps, SocialLinkProps } from '../../../interfaces/firebaseTypes';
+import React from "react";
+import { Github } from "lucide-react";
+
+import { useLanguageStore } from "../../../context/useLanguageStore";
+import { Container } from "../../Container";
+import { SectionHeader } from "../../SectionHeader";
+import { ProjectCard } from "../../ProjectCard";
+import { Button } from "../../Button";
 import {
-  StyledProjectsSection,
-  OthersGrid,
-  GithubLinkWrapper,
-  CodePulse
-} from './styles';
+  ScrollReveal,
+  StaggerContainer,
+  StaggerItem,
+} from "../../ScrollReveal";
+import { dataProjects } from "../../../data/dataProjects";
+import { dataSocialLinks } from "../../../data/dataSocialLinks";
+import {
+  ProjectProps,
+  SocialLinkProps,
+} from "../../../interfaces/firebaseTypes";
+import { StyledProjectsSection, OthersGrid, GithubLinkWrapper } from "./styles";
+
+type ProjectStatus = "Live" | "Source";
 
 export const ProjectsSection: React.FC = () => {
   const { language } = useLanguageStore();
   const { data } = dataProjects();
   const { data: socialData } = dataSocialLinks();
 
-  const isEn = language === 'en';
+  const isEn = language === "en";
 
-  const sectionTitle = data?.title?.[language === 'en' ? 'en' : 'pt'] || (isEn ? 'Deploy Registry' : 'Registro de Projetos');
-  const rawProjects = data?.data ? (Object.values(data.data) as ProjectProps[]) : [];
+  const sectionTitle =
+    typeof data?.title === "object"
+      ? data.title?.[isEn ? "en" : "pt"]
+      : data?.title || (isEn ? "Selected Projects" : "Projetos Selecionados");
 
-  const projects = rawProjects.map((p, idx) => {
-    const techRecord = p.technologies || {};
-    const technologies = Array.isArray(techRecord) ? techRecord : Object.values(techRecord);
-    
-    const getDesc = (descField: any) => {
-      if (!descField) return '';
-      if (typeof descField === 'string') return descField;
-      if (typeof descField === 'object') {
-        return Object.values(descField).join(' ');
-      }
-      return '';
-    };
+  const rawProjects = data?.data
+    ? (Object.values(data.data) as ProjectProps[])
+    : [];
 
-    const descEn = getDesc(p.description?.en);
-    const descPt = getDesc(p.description?.pt);
+  const getText = (value: unknown): string => {
+    if (!value) return "";
 
-    let catEn = '';
-    let catPt = '';
-    if ((p as any).category) {
-      const cat = (p as any).category;
-      if (typeof cat === 'string') {
-        catEn = cat;
-        catPt = cat;
-      } else if (typeof cat === 'object') {
-        catEn = cat.en || cat.enUs || cat.pt || '';
-        catPt = cat.pt || cat.ptBr || cat.en || '';
-      }
+    if (typeof value === "string") {
+      return value;
     }
 
-    let finalStatus: 'Live' | 'MVP' | 'WIP' | 'Study' | 'Archived' = 'Study';
-    const possibleStatuses = ['Live', 'MVP', 'WIP', 'Study', 'Archived'];
-    const pStatus = (p as any).status;
-    if (pStatus && possibleStatuses.includes(pStatus)) {
-      finalStatus = pStatus as 'Live' | 'MVP' | 'WIP' | 'Study' | 'Archived';
-    } else if (p.buttons?.liveUrl) {
-      finalStatus = 'Live';
+    if (typeof value === "object") {
+      const record = value as Record<string, unknown>;
+
+      const localizedValue =
+        record[isEn ? "en" : "pt"] ||
+        record[isEn ? "enUs" : "ptBr"] ||
+        record.pt ||
+        record.en;
+
+      if (typeof localizedValue === "string") {
+        return localizedValue;
+      }
+
+      return Object.values(record)
+        .filter((item): item is string => typeof item === "string")
+        .join(" ");
     }
+
+    return "";
+  };
+
+  const projects = rawProjects.map((project, index) => {
+    const techRecord = project.technologies || {};
+    const technologies = Array.isArray(techRecord)
+      ? techRecord
+      : Object.values(techRecord);
+
+    const liveUrl = project.buttons?.liveUrl || undefined;
+    const githubUrl = project.buttons?.repository || undefined;
+
+    const status: ProjectStatus | undefined = liveUrl
+      ? "Live"
+      : githubUrl
+        ? "Source"
+        : undefined;
 
     return {
-      id: p.title ? p.title.toLowerCase().replace(/\s+/g, '_') : `proj_${idx}`,
-      title: p.title || '',
+      id: project.title
+        ? project.title.toLowerCase().replace(/\s+/g, "_")
+        : `project_${index}`,
+      title: project.title || "",
       category: {
-        en: catEn,
-        pt: catPt
+        en: getText((project as any).category),
+        pt: getText((project as any).category),
       },
       description: {
-        en: descEn,
-        pt: descPt
+        en: getText(project.description?.en || project.description),
+        pt: getText(project.description?.pt || project.description),
       },
       technologies,
-      status: finalStatus,
-      githubUrl: p.buttons?.repository || undefined,
-      liveUrl: p.buttons?.liveUrl || undefined,
-      imageUrl: p.imageUrl || undefined,
-      isFeatured: idx < 3
+      status,
+      githubUrl,
+      liveUrl,
+      imageUrl: project.imageUrl || undefined,
     };
   });
 
-  const socialArray = socialData ? (Object.values(socialData) as SocialLinkProps[]) : [];
-  const baseGithub = socialArray.find(s => s.name?.toLowerCase().includes('github'))?.url || 'https://github.com/felizardo27';
-  const githubRepoUrl = baseGithub.includes('?') ? baseGithub : `${baseGithub}?tab=repositories`;
+  const socialArray = socialData
+    ? (Object.values(socialData) as SocialLinkProps[])
+    : [];
+
+  const baseGithub =
+    socialArray.find((social) => social.name?.toLowerCase().includes("github"))
+      ?.url || "https://github.com/felizardo27";
+
+  const githubRepoUrl = baseGithub.includes("?")
+    ? baseGithub
+    : `${baseGithub}?tab=repositories`;
 
   return (
     <StyledProjectsSection id="projects">
@@ -95,12 +120,14 @@ export const ProjectsSection: React.FC = () => {
           <SectionHeader
             prefix="04"
             title={sectionTitle}
-            description={isEn 
-              ? 'Fully-staged software applications, SaaS systems, and core developer tools.' 
-              : 'Sistemas funcionais em produção, plataformas autorais SaaS e ferramentas de produtividade para desenvolvedores.'}
+            description={
+              isEn
+                ? "Selected web, mobile, SaaS, and developer-focused projects built to solve real problems."
+                : "Projetos selecionados de web, mobile, SaaS e ferramentas para desenvolvedores, criados para resolver problemas reais."
+            }
           />
         </ScrollReveal>
-        
+
         <StaggerContainer staggerChildren={0.06}>
           <OthersGrid>
             {projects.map((project) => (
@@ -116,20 +143,17 @@ export const ProjectsSection: React.FC = () => {
             <Button
               variant="outline"
               icon={<Github />}
-              onClick={() => window.open(githubRepoUrl, '_blank', 'noreferrer')}
+              onClick={() =>
+                window.open(githubRepoUrl, "_blank", "noopener,noreferrer")
+              }
             >
-              {isEn ? 'Explore All Github Repositories' : 'Explorar Repositórios no GitHub'}
+              {isEn
+                ? "Explore all GitHub repositories"
+                : "Ver todos os repositórios no GitHub"}
             </Button>
           </GithubLinkWrapper>
-        </ScrollReveal>
-        
-        <ScrollReveal direction="none" delay={0.3} duration={0.8}>
-          <CodePulse>
-            // {isEn ? 'git commit -am "production-build-stable"' : 'git commit -am "producao-estavel"'}
-          </CodePulse>
         </ScrollReveal>
       </Container>
     </StyledProjectsSection>
   );
 };
-

@@ -1,10 +1,16 @@
-import React from 'react';
-import { useLanguageStore } from '../../../context/useLanguageStore';
-import { Container } from '../../Container';
-import { SectionHeader } from '../../SectionHeader';
-import { Code2, Cpu, Wrench } from 'lucide-react';
-import { ScrollReveal, StaggerContainer, StaggerItem } from '../../ScrollReveal';
-import { dataSkills } from '../../../data/dataSkills';
+import React from "react";
+import { Code2, Cpu, Wrench } from "lucide-react";
+
+import { useLanguageStore } from "../../../context/useLanguageStore";
+import { Container } from "../../Container";
+import { SectionHeader } from "../../SectionHeader";
+import {
+  ScrollReveal,
+  StaggerContainer,
+  StaggerItem,
+} from "../../ScrollReveal";
+import { dataSkills } from "../../../data/dataSkills";
+
 import {
   SkillsWrapper,
   CategoryGroup,
@@ -15,41 +21,59 @@ import {
   TechCard,
   TechIconImage,
   TechName,
-  TelemetryLine
-} from './styles';
+  TelemetryLine,
+} from "./styles";
 
 export const SkillsSection: React.FC = () => {
   const { language } = useLanguageStore();
   const { data: skillsData } = dataSkills();
 
-  const isEn = language === 'en';
+  const isEn = language === "en";
 
-  const defaultTitle = isEn ? 'Skills' : 'Habilidades';
-  const displayTitle = skillsData?.title?.[isEn ? 'enUs' : 'ptBr'] || defaultTitle;
+  const getLocalizedText = (
+    value: any,
+    fallback = ""
+  ): string => {
+    if (!value) return fallback;
 
-  // Header icons based on category indices
-  const getHeaderIcon = (idx: number) => {
-    switch (idx) {
-      case 0: return <Code2 size={16} />;
-      case 1: return <Cpu size={16} />;
-      default: return <Wrench size={16} />;
+    if (typeof value === "string") {
+      return value;
+    }
+
+    return (
+      value[isEn ? "enUs" : "ptBr"] ||
+      value[isEn ? "en" : "pt"] ||
+      value.enUs ||
+      value.en ||
+      value.ptBr ||
+      value.pt ||
+      fallback
+    );
+  };
+
+  const getHeaderIcon = (index: number) => {
+    switch (index) {
+      case 0:
+        return <Code2 size={16} />;
+      case 1:
+        return <Cpu size={16} />;
+      default:
+        return <Wrench size={16} />;
     }
   };
 
-  // Falling back to a clean list if skillsData is not ready
-  const rawCategories = skillsData?.data || [
-    {
-      title: { enUs: "Languages & Databases", ptBr: "Linguagens & Bancos de Dados" },
-      icons: [
-        { name: "JavaScript", url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-plain.svg" },
-        { name: "TypeScript", url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-plain.svg" },
-        { name: "Python", url: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" }
-      ]
-    }
-  ];
+  const displayTitle = getLocalizedText(
+    skillsData?.title,
+    isEn ? "Skills" : "Habilidades"
+  );
 
-  const categories = Array.isArray(rawCategories) ? rawCategories : Object.values(rawCategories);
+  const rawCategories = skillsData?.data
+    ? Array.isArray(skillsData.data)
+      ? skillsData.data
+      : Object.values(skillsData.data)
+    : [];
 
+  const categories = rawCategories;
 
   return (
     <SkillsWrapper id="skills">
@@ -58,45 +82,70 @@ export const SkillsSection: React.FC = () => {
           <SectionHeader
             prefix="03"
             title={displayTitle}
-            description={isEn 
-              ? 'Fully-loaded compiler targets, databases, and frameworks driving my active stacks.' 
-              : 'Filtro por camadas do ecossistema, compiladores, frameworks e utilitários que domino no dia a dia.'}
+            description={
+              isEn
+                ? "Technologies I use to build web, mobile, APIs, and cloud-based products."
+                : "Tecnologias que uso para construir produtos web, mobile, APIs e soluções em nuvem."
+            }
           />
         </ScrollReveal>
 
-        {(categories as any[]).map((cat: any, idx) => {
-          const categoryTitle = cat.title?.[isEn ? 'enUs' : 'ptBr'] || '';
-          const rawIcons = cat.icons || [];
-          const icons = Array.isArray(rawIcons) ? rawIcons : Object.values(rawIcons);
+        {categories.map((category, categoryIndex) => {
+          const categoryTitle = getLocalizedText(category.title);
+
+          const rawIcons = category.icons || [];
+          const icons = Array.isArray(rawIcons)
+            ? rawIcons
+            : Object.values(rawIcons);
 
           if (icons.length === 0) return null;
 
           return (
-            <ScrollReveal key={idx} direction="up" delay={0.1 * idx} duration={0.6}>
+            <ScrollReveal
+              key={categoryIndex}
+              direction="up"
+              delay={0.1 * categoryIndex}
+              duration={0.6}
+            >
               <CategoryGroup>
                 <CategoryHeader>
-                  <CategoryIcon>{getHeaderIcon(idx)}</CategoryIcon>
+                  <CategoryIcon>
+                    {getHeaderIcon(categoryIndex)}
+                  </CategoryIcon>
+
                   <CategoryTitle>{categoryTitle}</CategoryTitle>
-                  <TelemetryLine>STACK_LAYER // ACTIVE</TelemetryLine>
+
+                  <TelemetryLine>
+                    {isEn ? "STACK_LAYER // ACTIVE" : "CAMADA_STACK // ATIVA"}
+                  </TelemetryLine>
                 </CategoryHeader>
 
                 <StaggerContainer staggerChildren={0.04}>
                   <SkillsGrid>
-                    {icons.map((icon, iconIdx) => (
-                      <StaggerItem key={iconIdx} direction="up" scale={0.93}>
-                        <TechCard>
-                          {icon.url ? (
-                            <TechIconImage 
-                              src={icon.url} 
-                              alt={icon.name} 
-                              referrerPolicy="no-referrer"
-                              loading="lazy"
-                            />
-                          ) : null}
-                          <TechName>{icon.name}</TechName>
-                        </TechCard>
-                      </StaggerItem>
-                    ))}
+                    {icons.map((icon, iconIndex) => {
+                      if (!icon?.name) return null;
+
+                      return (
+                        <StaggerItem
+                          key={`${icon.name}_${iconIndex}`}
+                          direction="up"
+                          scale={0.93}
+                        >
+                          <TechCard>
+                            {icon.url && (
+                              <TechIconImage
+                                src={icon.url}
+                                alt={icon.name}
+                                referrerPolicy="no-referrer"
+                                loading="lazy"
+                              />
+                            )}
+
+                            <TechName>{icon.name}</TechName>
+                          </TechCard>
+                        </StaggerItem>
+                      );
+                    })}
                   </SkillsGrid>
                 </StaggerContainer>
               </CategoryGroup>

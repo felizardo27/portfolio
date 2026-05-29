@@ -13,7 +13,7 @@ const getInitialTheme = (): 'dark' | 'light' => {
       return stored;
     }
   }
-  return 'dark'; // Dark theme is default experience as requested
+  return 'dark';
 };
 
 export const useThemeStore = create<ThemeState>((set) => ({

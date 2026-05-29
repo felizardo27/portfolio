@@ -106,15 +106,9 @@ export interface Project {
     pt: string;
   };
   technologies: string[];
-  status: 'Live' | 'MVP' | 'WIP' | 'Study' | 'Archived';
   githubUrl?: string;
   liveUrl?: string;
   imageUrl?: string;
-  isFeatured: boolean;
-  metrics?: {
-    label: { en: string; pt: string };
-    value: string;
-  };
 }
 
 export interface Experience {

@@ -34,3 +34,13 @@ export const Title = styled.h2`
     font-size: ${(props) => props.theme.fontSizes.xxl};
   }
 `;
+
+export const Description = styled.p`
+  font-family: ${props => props.theme.fonts.sans};
+  font-size: ${props => props.theme.fontSizes.md};
+  color: ${props => props.theme.colors.textSecondary};
+  max-width: 600px;
+  margin-top: 0.75rem;
+  margin-bottom: 0;
+  line-height: 1.6;
+`;
