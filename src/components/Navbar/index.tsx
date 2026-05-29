@@ -18,13 +18,14 @@ import {
   TelemetryBar,
   DrawerFooter
 } from './styles';
+import { useAnalytics } from '../../hooks/useAnalytics';
 
 export const Navbar: React.FC = () => {
   const { language } = useLanguageStore();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-
+  const { track } = useAnalytics();
   const isEn = language === 'en';
 
   const navLinks = [
@@ -60,6 +61,7 @@ export const Navbar: React.FC = () => {
 
   const handleLinkClick = (id: string) => {
     setIsMobileOpen(false);
+    track(`view_${id}_section`);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });

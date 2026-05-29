@@ -42,7 +42,7 @@ export const tokens = {
         green: '#059669',
         greenGlow: 'rgba(5, 150, 105, 0.08)',
       },
-      gridColor: 'rgba(0, 0, 0, 0.02)',
+      gridColor: 'rgba(0, 0, 0, 0.05)',
     }
   },
   fonts: {

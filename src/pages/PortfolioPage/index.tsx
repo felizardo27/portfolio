@@ -23,19 +23,21 @@ import {
   TechLoaderLabel,
   SectionWrapper
 } from './styles';
+import { useAnalytics } from '../../hooks/useAnalytics';
 
 export const PortfolioPage: React.FC = () => {
   const { language } = useLanguageStore();
-  const { database, getData } = useFirebaseStore();
+  const { database, getData, initAnalytics } = useFirebaseStore();
   const [loading, setLoading] = useState(true);
   const [isResumeOpen, setIsResumeOpen] = useState(false);
-
+  const { track } = useAnalytics();
   const isEn = language === 'en';
 
   useEffect(() => {
     const loadFirebaseStore = async () => {
       try {
         await getData();
+        await initAnalytics();
       } catch (err) {
         console.error('Failed to load portfolio database via Zustand store:', err);
       } finally {
@@ -65,6 +67,7 @@ export const PortfolioPage: React.FC = () => {
   }
 
   const handleViewResume = () => {
+    track('view_resume');
     setIsResumeOpen(true);
   };
 

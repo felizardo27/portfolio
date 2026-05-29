@@ -64,11 +64,11 @@ export const GlobalStyle = createGlobalStyle`
     transform: translateX(-50%);
     width: 100vw;
     height: 60vh;
-    background: radial-gradient(
+    /* background: radial-gradient(
       circle, 
       ${props => props.theme.mode === 'dark' ? 'rgba(0, 102, 255, 0.05)' : 'rgba(0, 102, 255, 0.02)'} 0%, 
       transparent 70%
-    );
+    ); */
     pointer-events: none;
     z-index: -1;
   }

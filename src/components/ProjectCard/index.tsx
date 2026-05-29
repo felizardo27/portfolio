@@ -1,8 +1,8 @@
-import React from 'react';
-import { Project } from '../../interfaces/firebaseTypes';
-import { useLanguageStore } from '../../context/useLanguageStore';
-import { Badge } from '../Badge';
-import { ExternalLink, Github } from 'lucide-react';
+import React from "react";
+import { Project } from "../../interfaces/firebaseTypes";
+import { useLanguageStore } from "../../context/useLanguageStore";
+import { Badge } from "../Badge";
+import { ExternalLink, Github } from "lucide-react";
 import {
   StyledCard,
   Header,
@@ -20,8 +20,8 @@ import {
   AnchorLink,
   GlowAccent,
   ImageContainer,
-  CardImage
-} from './styles';
+  CardImage,
+} from "./styles";
 
 interface ProjectCardProps {
   project: Project;
@@ -34,20 +34,17 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const category = project.category[language];
   const description = project.description[language];
   const technologies = project.technologies;
-  const status = project.status;
-  const metrics = project.metrics;
-
   const hasLive = !!project.liveUrl;
   const hasGithub = !!project.githubUrl;
 
-  const currentStatus = hasLive ? 'Live' : (hasGithub ? 'Source' : project.status);
-  const badgeVariant = hasLive ? 'green' : (hasGithub ? 'blue' : 'slate');
+  const currentStatus = hasLive ? "Live" : hasGithub ? "Source" : "Private";
+  const badgeVariant = hasLive ? "green" : hasGithub ? "blue" : "slate";
   const shouldPulse = hasLive;
 
   return (
     <StyledCard $isFeatured={false}>
       <div>
-        <Header style={{ marginBottom: '1rem' }}>
+        <Header style={{ marginBottom: "1rem" }}>
           <TitleWrapper>
             {category && <CategoryName>{category}</CategoryName>}
             <Title>{title}</Title>
@@ -68,7 +65,7 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           </ImageContainer>
         )}
 
-        <Description style={{ marginTop: '1rem', marginBottom: '1.25rem' }}>
+        <Description style={{ marginTop: "1rem", marginBottom: "1.25rem" }}>
           {description}
         </Description>
 
@@ -80,26 +77,25 @@ export const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       </div>
 
       <Footer>
-        {metrics ? (
-          <TelemetryMetric>
-            <MetricLabel>{metrics.label[language]}</MetricLabel>
-            <MetricValue>{metrics.value}</MetricValue>
-          </TelemetryMetric>
-        ) : (
-          <div />
-        )}
-
         <LinksWrapper>
           {project.githubUrl && (
-            <AnchorLink href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+            <AnchorLink
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <Github size={13} />
               <span>Code</span>
             </AnchorLink>
           )}
           {project.liveUrl && (
-            <AnchorLink href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+            <AnchorLink
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <ExternalLink size={13} />
-              <span>{language === 'pt' ? 'Abrir' : 'Launch'}</span>
+              <span>{language === "pt" ? "Abrir" : "Launch"}</span>
             </AnchorLink>
           )}
         </LinksWrapper>

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const StyledHeroSection = styled.section`
   padding: 8rem 0 6rem 0;
   width: 100%;
+  height: 100vh;
   box-sizing: border-box;
-  background-color: ${props => props.theme.colors.background};
   display: flex;
   align-items: center;
   min-height: 85vh;
