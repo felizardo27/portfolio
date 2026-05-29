@@ -8,7 +8,7 @@ export const StyledHeroSection = styled.section`
   align-items: center;
   min-height: 85vh;
 
-  @media (min-width: ${props => props.theme.breakpoints.lg}) {
+  @media (min-width: ${props => props.theme.breakpoints.md}) {
     height: 100vh;
   }
 
