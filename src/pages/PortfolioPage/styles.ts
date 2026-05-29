@@ -54,7 +54,6 @@ export const LoadingScreen = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: #08090C;
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -92,6 +91,7 @@ export const TechLoaderLabel = styled.span`
   letter-spacing: 0.15em;
   text-transform: uppercase;
 `;
+
 export const SectionWrapper = styled.div`
   opacity: 0;
   animation: pageFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;

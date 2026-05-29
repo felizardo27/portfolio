@@ -4,7 +4,6 @@ export const AboutWrapper = styled.section`
   padding: 6rem 0;
   width: 100%;
   box-sizing: border-box;
-  background-color: ${props => props.theme.colors.background};
 `;
 
 export const TwoColGrid = styled.div`

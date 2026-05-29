@@ -31,7 +31,6 @@ export const ResumeModal: React.FC<ResumeModalProps> = ({ isOpen, onClose, resum
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-
   const isEn = language === 'en';
 
 
