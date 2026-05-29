@@ -1,29 +1,11 @@
-import { create } from "zustand";
+import { useLanguageStore } from "./useLanguageStore";
 
-type LanguageType = "ptBr" | "enUs";
-
-interface LanguageStoreProps {
-  language: LanguageType;
-  setLanguage: (language: LanguageType) => void;
+export function useLanguage() {
+  const { language, toggleLanguage, setLanguage } = useLanguageStore();
+  const mapped = language === "pt" ? "ptBr" : "enUs";
+  return {
+    language: mapped,
+    toggleLanguage,
+    setLanguage,
+  };
 }
-
-function getInitialLanguage(): LanguageType {
-  const storageLang = localStorage.getItem("lang") as LanguageType;
-
-  if (storageLang) {
-    return storageLang;
-  }
-  
-  const browserLanguage = navigator.language || navigator.languages[0];
-  return browserLanguage.startsWith("pt") ? "ptBr" : "enUs";
-}
-
-export const useLanguage = create<LanguageStoreProps>((set) => ({
-  language: getInitialLanguage(),
-  setLanguage: (language: LanguageType) => {
-    localStorage.setItem("lang", language)
-    set(() => ({
-      language: language,
-    }));
-  },
-}));

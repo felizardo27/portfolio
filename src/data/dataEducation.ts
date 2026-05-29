@@ -6,6 +6,6 @@ export function dataEducation() {
   const { database } = useFirebaseStore();
 
   return {
-    data: language === "ptBr" ? database?.education.pt : database?.education.en,
+    data: language === "ptBr" ? database?.education?.pt : database?.education?.en,
   };
 }

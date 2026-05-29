@@ -6,7 +6,6 @@ export function dataResume() {
   const { database } = useFirebaseStore();
 
   return {
-    data:
-      language === "ptBr" ? database?.resume?.pt.url : database?.resume?.en.url,
+    data: language === "ptBr" ? database?.resume?.pt?.url : database?.resume?.en?.url,
   };
 }
