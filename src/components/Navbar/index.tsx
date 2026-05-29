@@ -1,94 +1,128 @@
-import { Container, ContainerItems, IconLogo, Menu, MenuItem, MenuMobile, Navigation, Icon } from "./styles";
-import { useCurrentPage } from "../../context/useCurrentPage";
-import { routesPages } from "../../router/routesPath";
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useTheme } from "../../context/useTheme";
-import { useLanguage } from "../../context/useLanguage";
-import { dataResume } from "../../data/dataResume";
+import React, { useState, useEffect } from 'react';
+import { useLanguageStore } from '../../context/useLanguageStore';
+import { Container } from '../Container';
+import { ToggleTheme } from '../ToggleTheme';
+import { ToggleLanguage } from '../ToggleLanguage';
+import { Menu, X, ShieldCheck } from 'lucide-react';
+import { ScrollReveal } from '../ScrollReveal';
+import {
+  NavContainer,
+  InnerNav,
+  LogoUrl,
+  DesktopLinks,
+  NavLink,
+  ControlsWrapper,
+  MobileMenuButton,
+  MobileDrawer,
+  DrawerNavLink,
+  TelemetryBar,
+  DrawerFooter
+} from './styles';
 
-export function Navbar() {
-  const { icons, theme, setTheme } = useTheme()
-  const { language, setLanguage } = useLanguage()
-  const { currentPage, setCurrentPage } = useCurrentPage();
-  const [menuOpen, setMenuOpen] = useState(false)
-  const navigation = useNavigate();
+export const Navbar: React.FC = () => {
+  const { language } = useLanguageStore();
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileOpen, setIsMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
 
-  const {data} = dataResume();
+  const isEn = language === 'en';
 
-  function goTo(url: string | undefined) {
-    if (url) {
-      window.open(url, '_blank');
-    }
-  }
-
-  function toggleMenuMobile() {
-    setMenuOpen(!menuOpen)
-  }
-
-  function toggleTheme() {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
-
-  function toggleLanguage() {
-    setLanguage(language === "ptBr" ? 'enUs' : 'ptBr')
-  }
+  const navLinks = [
+    { id: 'home', label: isEn ? 'Home' : 'Início' },
+    { id: 'about', label: isEn ? 'About' : 'Sobre' },
+    { id: 'skills', label: isEn ? 'Skills' : 'Habilidades' },
+    { id: 'projects', label: isEn ? 'Projects' : 'Projetos' },
+    { id: 'experience', label: isEn ? 'Experience' : 'Experiência' },
+    { id: 'education', label: isEn ? 'Education' : 'Formação' },
+    { id: 'contact', label: isEn ? 'Contact' : 'Contato' }
+  ];
 
   useEffect(() => {
-    if (menuOpen) {
-      setMenuOpen(!menuOpen)
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+
+      // Section intersection tracking
+      const sections = navLinks.map((link) => document.getElementById(link.id));
+      const scrollPosition = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = sections[i];
+        if (section && scrollPosition >= section.offsetTop) {
+          setActiveSection(navLinks[i].id);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [language]);
+
+  const handleLinkClick = (id: string) => {
+    setIsMobileOpen(false);
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [currentPage, theme])
-
-  function RenderMenuItems() {
-    return (
-      routesPages.map(item => (
-        item.path === '/resume' ? (
-          <MenuItem
-            key={item.pageName[language]}
-            onClick={() => goTo(data)}
-          >
-            {item.pageName[language]}
-          </MenuItem>
-        ) : (
-          <Navigation
-            key={item.pageName[language]}
-            to={item.path}
-            onClick={() => {
-              menuOpen && toggleMenuMobile()
-              setCurrentPage(item.pageName[language])
-            }}
-          >
-            <MenuItem isActive={item.pageName[language] === currentPage}>
-              {item.pageName[language]}
-            </MenuItem>
-          </Navigation>
-        )
-      )))
-  }
-
+  };
 
   return (
-    <Container>
-      <IconLogo src={icons.profileIcon} onClick={() => {
-        navigation('/home')
-        setCurrentPage('Home')
-      }} />
-      <Menu>
-        <RenderMenuItems />
-        <Icon onClick={toggleTheme} src={theme === 'dark' ? icons.sunIcon : icons.moonIcon} />
-        <Icon onClick={toggleLanguage} src={language === 'ptBr' ? icons.brazilFlagIcon : icons.usaFlagIcon} />
-      </Menu>
-      <MenuMobile>
-        <IconLogo onClick={toggleMenuMobile} src={icons.menuIcon} style={{ cursor: 'pointer' }} />
-        <Icon onClick={toggleLanguage} src={language === 'ptBr' ? icons.brazilFlagIcon : icons.usaFlagIcon} />
-      </MenuMobile>
-      <ContainerItems menuOpen={menuOpen}>
-        <RenderMenuItems />
-        <MenuItem onClick={toggleTheme}>
-          <Icon src={theme === 'dark' ? icons.sunIcon : icons.moonIcon} />{`Modo ${theme === `dark` ? 'light' : 'dark'}`}
-        </MenuItem>
-      </ContainerItems>
-    </Container>
-  )
-}
+    <>
+      <ScrollReveal trigger="animate" direction="down" delay={0.05} duration={0.5} distance={15} style={{ position: 'sticky', top: 0, zIndex: 1000, width: '100%' }}>
+        <NavContainer $isScrolled={isScrolled}>
+          <Container style={{ height: '100%' }}>
+            <InnerNav>
+              <LogoUrl onClick={() => handleLinkClick('home')} aria-label="Logo Home">
+                <span>&lt;</span> felizardo27_ <span>/&gt;</span>
+              </LogoUrl>
+
+              <DesktopLinks>
+                {navLinks.map((link) => (
+                  <NavLink
+                    key={link.id}
+                    $isActive={activeSection === link.id}
+                    onClick={() => handleLinkClick(link.id)}
+                  >
+                    {link.label}
+                  </NavLink>
+                ))}
+              </DesktopLinks>
+
+              <ControlsWrapper>
+                <ToggleLanguage />
+                <ToggleTheme />
+                <MobileMenuButton
+                  onClick={() => setIsMobileOpen(!isMobileOpen)}
+                  aria-label="Toggle menu link list"
+                >
+                  {isMobileOpen ? <X /> : <Menu />}
+                </MobileMenuButton>
+              </ControlsWrapper>
+            </InnerNav>
+          </Container>
+        </NavContainer>
+      </ScrollReveal>
+
+      {/* Mobile Slider Panel */}
+      <MobileDrawer $isOpen={isMobileOpen}>
+        <TelemetryBar>
+          <span>
+            <ShieldCheck size={11} style={{ verticalAlign: 'middle', marginRight: '4px', display: 'inline' }} />
+            SYS.LOAD // CONNECTED
+          </span>
+          <span>STABLE</span>
+        </TelemetryBar>
+        {navLinks.map((link) => (
+          <DrawerNavLink
+            key={link.id}
+            $isActive={activeSection === link.id}
+            onClick={() => handleLinkClick(link.id)}
+          >
+            // {link.label.toUpperCase()}
+          </DrawerNavLink>
+        ))}
+        <DrawerFooter />
+      </MobileDrawer>
+    </>
+  );
+};

@@ -1,57 +1,38 @@
-const palette = {
-  black: "#000000",
-  white: "#FFFFFF",
+import { tokens } from './tokens';
+import 'styled-components';
 
-  info100: "#B4D1F2",
-  info200: "#8AB9E0",
-  info300: "#3D84C6",
-  info400: "#2C6D9D",
-  info500: "#1A4C73",
+export type ColorTheme = typeof tokens.colors.dark;
 
-  navBar100: "#FEFEFE",
-  navBar200: "#DEDEDE",
+export interface AppTheme {
+  colors: ColorTheme;
+  fonts: typeof tokens.fonts;
+  fontSizes: typeof tokens.fontSizes;
+  breakpoints: typeof tokens.breakpoints;
+  transitions: typeof tokens.transitions;
+  shadows: typeof tokens.shadows;
+  mode: 'dark' | 'light';
+}
+
+declare module 'styled-components' {
+  export interface DefaultTheme extends AppTheme {}
+}
+
+export const darkTheme: AppTheme = {
+  colors: tokens.colors.dark,
+  fonts: tokens.fonts,
+  fontSizes: tokens.fontSizes,
+  breakpoints: tokens.breakpoints,
+  transitions: tokens.transitions,
+  shadows: tokens.shadows,
+  mode: 'dark' as const,
 };
 
-const lightTheme = {
-  ...palette,
-
-  background: "#fff",
-  backgroundContrast: "#121212",
-
-  chronoTheme: {
-    cardBgColor: "white",
-    cardForeColor: "black",
-    titleColor: "white",
-  },
-
-  timelineLineColor: "#ccc",
-  cardBackground: "#fff",
-  cardFooterBackground: "#f7f7f7",
-  cardBorderColor: "#00000020",
-  bsPrimaryVariant: "light",
-  bsSecondaryVariant: "dark",
-  socialIconBgColor: "#121212",
+export const lightTheme: AppTheme = {
+  colors: tokens.colors.light,
+  fonts: tokens.fonts,
+  fontSizes: tokens.fontSizes,
+  breakpoints: tokens.breakpoints,
+  transitions: tokens.transitions,
+  shadows: tokens.shadows,
+  mode: 'light' as const,
 };
-
-const darkTheme = {
-  ...palette,
-
-  background: "#121212",
-  backgroundContrast: "#eee",
-
-  chronoTheme: {
-    cardBgColor: "#1B1B1B",
-    cardForeColor: "#eee",
-    titleColor: "black",
-  },
-
-  timelineLineColor: "#444",
-  cardBackground: "#060606",
-  cardFooterBackground: "#181818",
-  cardBorderColor: "#ffffff20",
-  bsPrimaryVariant: "dark",
-  bsSecondaryVariant: "light",
-  socialIconBgColor: "#fefefe",
-};
-
-export const themeColor = { lightTheme, darkTheme };
