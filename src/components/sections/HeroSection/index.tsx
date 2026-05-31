@@ -6,8 +6,6 @@ import { Button } from "../../Button";
 import { Github, Mail, Shield, FileText } from "lucide-react";
 import { GithubHeatmap } from "../../GithubHeatmap";
 import { ScrollReveal } from "../../ScrollReveal";
-import { dataSocialLinks } from "../../../data/dataSocialLinks";
-import { SocialLinkProps } from "../../../interfaces/firebaseTypes";
 import {
   StyledHeroSection,
   GridContainer,
@@ -31,7 +29,6 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onViewResume }) => {
   const { language } = useLanguageStore();
-  const { data: socialData } = dataSocialLinks();
 
   const handleScrollTo = (sectionId: string) => {
     const el = document.getElementById(sectionId);
@@ -42,12 +39,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onViewResume }) => {
 
   const isEn = language === "en";
 
-  const socialArray = socialData
-    ? (Object.values(socialData) as SocialLinkProps[])
-    : [];
-  const githubLink =
-    socialArray.find((s) => s.name?.toLowerCase().includes("github"))?.url ||
-    "https://github.com/felizardo27";
+  const githubLink = "https://github.com/felizardo27";
 
   return (
     <StyledHeroSection id="home">
