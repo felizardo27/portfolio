@@ -22,19 +22,24 @@ import {
 } from "./styles";
 import { Icon } from "../../components/Icon";
 import { useFirebaseStore } from "../../context/useFirebaseData";
+import { useAnalytics } from "../../hooks/useAnalytics";
 
 export const LinksPage: React.FC = () => {
   const { language } = useLanguageStore();
-  const { database, getData } = useFirebaseStore();
+  const { database, getData, initAnalytics } = useFirebaseStore();
+  const { track } = useAnalytics();
 
   useEffect(() => {
     const loadFirebase = async () => {
       try {
         if (!database) {
           await getData();
+          await initAnalytics();
         }
       } catch (err) {
         console.error("Failed to load database in LinksPage:", err);
+      } finally {
+        track("view_links_page")
       }
     };
     loadFirebase();
@@ -46,7 +51,6 @@ export const LinksPage: React.FC = () => {
     en: "Full Stack & Mobile Developer from Brazil. Creating modern web apps, mobile products, and automation tools.",
     pt: "Desenvolvedor Full Stack e Mobile. Criando aplicações web modernas, produtos mobile e ferramentas de automação.",
   };
-
 
   const cardVariants = {
     hidden: { opacity: 0, y: 30 },
