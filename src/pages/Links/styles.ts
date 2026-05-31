@@ -20,7 +20,7 @@ export const LinksLayout = styled.main`
   justify-content: flex-start;
   min-height: 100vh;
   width: 100%;
-  padding: 2.5rem 1.25rem 16rem 1.25rem;
+  padding: 2.5rem 1.25rem;
 `;
 
 export const HeaderControls = styled.div`
