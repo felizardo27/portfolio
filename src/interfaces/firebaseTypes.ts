@@ -1,3 +1,5 @@
+import { IconName } from "lucide-react/dynamic";
+
 export type DatabaseProps = {
   about: {
     pt: AboutProps;
@@ -24,7 +26,9 @@ export type DatabaseProps = {
       ptBr: string;
       enUs: string;
     };
-    data: Record<number, SkillCategoryProps> | Record<string, SkillCategoryProps>;
+    data:
+      | Record<number, SkillCategoryProps>
+      | Record<string, SkillCategoryProps>;
   };
 
   projects: {
@@ -35,7 +39,10 @@ export type DatabaseProps = {
     data: Record<number, ProjectProps> | Record<string, ProjectProps>;
   };
 
-  socialLinks: Record<number, SocialLinkProps> | Record<string, SocialLinkProps>;
+  socialLinks: {
+    data: SocialLinkProps[];
+    "spotify-playlist": SocialLinkProps;
+  }
 };
 
 export type AboutProps = {
@@ -88,12 +95,6 @@ export type ProjectProps = {
   };
 };
 
-export type SocialLinkProps = {
-  name: string;
-  url: string;
-  icon?: string;
-};
-
 export interface Project {
   id: string;
   title: string;
@@ -127,4 +128,12 @@ export interface Experience {
     pt: string[];
   };
   technologies: string[];
+}
+
+export interface SocialLinkProps {
+  id: string;
+  label: string;
+  url: string;
+  icon: IconName;
+  isExternal?: boolean;
 }

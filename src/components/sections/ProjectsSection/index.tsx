@@ -12,11 +12,7 @@ import {
   StaggerItem,
 } from "../../ScrollReveal";
 import { dataProjects } from "../../../data/dataProjects";
-import { dataSocialLinks } from "../../../data/dataSocialLinks";
-import {
-  ProjectProps,
-  SocialLinkProps,
-} from "../../../interfaces/firebaseTypes";
+import { ProjectProps } from "../../../interfaces/firebaseTypes";
 import { StyledProjectsSection, OthersGrid, GithubLinkWrapper } from "./styles";
 
 type ProjectStatus = "Live" | "Source";
@@ -24,7 +20,6 @@ type ProjectStatus = "Live" | "Source";
 export const ProjectsSection: React.FC = () => {
   const { language } = useLanguageStore();
   const { data } = dataProjects();
-  const { data: socialData } = dataSocialLinks();
 
   const isEn = language === "en";
 
@@ -101,13 +96,7 @@ export const ProjectsSection: React.FC = () => {
     };
   });
 
-  const socialArray = socialData
-    ? (Object.values(socialData) as SocialLinkProps[])
-    : [];
-
-  const baseGithub =
-    socialArray.find((social) => social.name?.toLowerCase().includes("github"))
-      ?.url || "https://github.com/felizardo27";
+  const baseGithub = "https://github.com/felizardo27";
 
   const githubRepoUrl = baseGithub.includes("?")
     ? baseGithub

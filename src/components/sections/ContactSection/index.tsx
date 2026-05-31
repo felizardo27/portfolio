@@ -4,8 +4,6 @@ import { Container } from "../../Container";
 import { SocialButton } from "../../SocialButton";
 import { Mail, Copy, Check } from "lucide-react";
 import { ScrollReveal } from "../../ScrollReveal";
-import { dataSocialLinks } from "../../../data/dataSocialLinks";
-import { SocialLinkProps } from "../../../interfaces/firebaseTypes";
 import {
   StyledContactSection,
   ContactBox,
@@ -18,33 +16,20 @@ import {
 
 export const ContactSection: React.FC = () => {
   const { language } = useLanguageStore();
-  const { data: socialData } = dataSocialLinks();
   const [copied, setCopied] = useState(false);
 
   const isEn = language === "en";
 
-  const socialArray = socialData
-    ? (Object.values(socialData) as SocialLinkProps[])
-    : [];
-
-  const baseEmail =
-    socialArray.find((s) => s.name?.toLowerCase().includes("email"))?.url ||
-    "jp.felizardo27@gmail.com";
+  const baseEmail = "jp.felizardo27@gmail.com";
   const email = baseEmail.replace(/^mailto:/, "");
+  const githubLink =  "https://github.com/felizardo27";
+  const linkedinLink = "https://linkedin.com/in/felizardo27";
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(email);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
-
-  // Filter systems
-  const githubLink =
-    socialArray.find((s) => s.name?.toLowerCase().includes("github"))?.url ||
-    "https://github.com/felizardo27";
-  const linkedinLink =
-    socialArray.find((s) => s.name?.toLowerCase().includes("linkedin"))?.url ||
-    "https://linkedin.com/in/felizardo27";
 
   return (
     <StyledContactSection id="contact">
