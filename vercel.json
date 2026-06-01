@@ -1,8 +1,5 @@
 {
-  "rewrites": [
-    {
-      "source": "/:path*",
-      "destination": "/index.html"
-    }
-  ]
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "devCommand": "vite --host 0.0.0.0 --port $PORT"
 }
