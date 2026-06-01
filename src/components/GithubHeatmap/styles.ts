@@ -65,6 +65,8 @@ const shimmer = keyframes`
 export const ShimmerGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(24, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-auto-flow: column;
   gap: 3px;
   width: 100%;
   animation: ${shimmer} 1.6s infinite ease-in-out;
@@ -72,7 +74,8 @@ export const ShimmerGrid = styled.div`
   div {
     width: 100%;
     aspect-ratio: 1;
-    background-color: ${props => props.theme.mode === 'dark' ? '#161B22' : '#EBEDF0'};
+    background-color: ${props =>
+      props.theme.mode === 'dark' ? '#161B22' : '#EBEDF0'};
     border-radius: 2px;
   }
 `;
@@ -80,6 +83,8 @@ export const ShimmerGrid = styled.div`
 export const GridDecoration = styled.div`
   display: grid;
   grid-template-columns: repeat(24, 1fr);
+  grid-template-rows: repeat(7, 1fr);
+  grid-auto-flow: column;
   gap: 3px;
   width: 100%;
 `;

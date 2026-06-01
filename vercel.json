@@ -1,4 +1,7 @@
 {
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "devCommand": "vite --host 0.0.0.0 --port $PORT",
   "rewrites": [
     {
       "source": "/:path*",
