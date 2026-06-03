@@ -23,6 +23,7 @@ import {
 import { Icon } from "../../components/Icon";
 import { useFirebaseStore } from "../../context/useFirebaseData";
 import { useAnalytics } from "../../hooks/useAnalytics";
+import { NowPlayingBadge } from "../../components/NowPlayingBadge";
 
 export const LinksPage: React.FC = () => {
   const { language } = useLanguageStore();
@@ -94,6 +95,7 @@ export const LinksPage: React.FC = () => {
                 "https://avatars.githubusercontent.com/u/89668494?v=4";
             }}
           />
+          <NowPlayingBadge />
         </AvatarWrapper>
 
         <ProfileName>João Pedro Felizardo</ProfileName>
