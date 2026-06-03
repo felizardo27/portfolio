@@ -66,15 +66,11 @@ export const AvatarWrapper = styled.div`
   margin-bottom: 1.5rem;
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     inset: -5px;
     border-radius: 50%;
-    background: linear-gradient(
-      135deg,
-      ${(props) => props.theme.colors.accent.blue},
-      ${(props) => props.theme.colors.accent.cyan}
-    );
+    background: linear-gradient(135deg, ${props => props.theme.colors.accent.blue}, ${props => props.theme.colors.accent.cyan});
     z-index: -1;
     animation: ${pulseGlow} 4s infinite ease-in-out;
   }
@@ -85,8 +81,8 @@ export const AvatarImage = styled.img`
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid ${(props) => props.theme.colors.card};
-  background-color: ${(props) => props.theme.colors.backgroundAlt};
+  border: 3px solid ${props => props.theme.colors.card};
+  background-color: ${props => props.theme.colors.backgroundAlt};
 `;
 
 export const ProfileName = styled.h1`
