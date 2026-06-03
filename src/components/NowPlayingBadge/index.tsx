@@ -41,6 +41,14 @@ export const NowPlayingBadge: React.FC = () => {
   const fetchNowPlayingStatus = async () => {
     try {
       const response = await fetch("/api/spotify/now-playing");
+      const contentType = response.headers.get("content-type") || "";
+
+      if (!contentType.includes("application/json")) {
+        throw new Error(
+          `Unexpected response type from Spotify endpoint: ${contentType || "unknown"}`,
+        );
+      }
+
       if (response.ok) {
         const data = await response.json();
         setIsPlaying(!!data.isPlaying);

@@ -4,7 +4,11 @@
   "devCommand": "vite --host 0.0.0.0 --port $PORT",
   "rewrites": [
     {
-      "source": "/:path*",
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
+    },
+    {
+      "source": "/((?!api/|@vite/|@react-refresh|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]
